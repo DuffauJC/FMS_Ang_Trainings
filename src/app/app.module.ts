@@ -5,13 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TrainingsComponent } from './trainings/trainings.component';
+import { CaddyComponent } from './caddy/caddy.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TrainingsComponent,
-  
+    CaddyComponent
   ],
   imports: [
     BrowserModule,

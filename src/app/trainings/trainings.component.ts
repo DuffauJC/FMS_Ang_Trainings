@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Training } from '../model/training.model';
-import { CartService } from '../cart.service';
+import { CartService } from '../services/cart.service';
 @Component({
   selector: 'app-trainings',
   templateUrl: './trainings.component.html',
-  styleUrls: ['./trainings.component.css']
 })
 
 export class TrainingsComponent implements OnInit {
@@ -21,6 +20,7 @@ export class TrainingsComponent implements OnInit {
   onAddToCart(training:Training) {
     this.cartService.addTraining(training)
     
-    
   }
+
+  
 }

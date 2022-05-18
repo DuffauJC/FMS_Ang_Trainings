@@ -1,21 +1,27 @@
 <div class="container">
   <ng-container *ngIf="listCaddy">
-    <table table table-striped table-hover>
+     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>REF</th>
           <th>NOM</th>
-          <th>QUANTITE</th>
+          <th>QTE</th>
           <th>MONTANT</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of listCaddy">
-          <!-- <td>{{item.ref}}</td>
+          <td>{{item.ref}}</td>
           <td>{{item.name}}</td>
           <td>{{item.qty}}</td>
-          <td>{{item.sum}}</td> -->
-          <td> <a class="btn btn-danger" >Supprimer</a></td>
+          <td>{{item.sum}}</td>
+          <td> <a class="btn btn-danger" (click)="onDelToCart(item)">Supprimer</a></td>
+        </tr>
+        <tr>
+              <td>Total</td>
+              <td></td>
+              <td></td>
+              <td>{{total}}</td>
         </tr>
       </tbody>
     </table>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Caddy } from '../model/caddy.model';
+import { CartService } from '../services/cart.service';
 
 @Component({
     selector: 'app-caddy',
@@ -7,31 +8,32 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class CaddyComponent implements OnInit {
-    listCaddy: Object[] | undefined
+    listCaddy: Caddy[] | undefined
+    total = 0
+    constructor(private cartService: CartService) { }
 
-    constructor() { }
-
-    ngOnInit():void {
+    ngOnInit(): void {
+        
+        this.listCaddy = []
+        
         //Initialisation du local storage (panier)
         let caddy = window.localStorage;
         let caddySize = caddy.length
-        let total = 0
+     
         for (let i = 0; i < caddySize; i++) {
             let obj = JSON.parse(caddy.getItem(caddy.key(i) || "") || "")
-            console.log(obj);
-            this.listCaddy?.push(obj)
-            console.log(this.listCaddy?.length);
-            
-            total += obj.sum
+            //console.log(obj);
+            this.listCaddy.push(obj)
+           
+            this.total += obj.sum
         }
-        console.log('total', total);
-        console.log(this.listCaddy?.toString());
-        
-        // for (let index = 0; index < this.listCaddy?.length; index++) {
-        //    console.log(index)
-            
-        // }
-        
+        //console.log('total', this.total);
+     
+    }
+
+    onDelToCart(item:Caddy) {
+        this.cartService.delStorage(item)
+
     }
  
 }

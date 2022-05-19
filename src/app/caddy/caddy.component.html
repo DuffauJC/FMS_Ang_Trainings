@@ -1,6 +1,6 @@
 <div class="container">
   <ng-container *ngIf="listCaddy">
-     <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover">
       <thead>
         <tr>
           <th>REF</th>
@@ -18,12 +18,13 @@
           <td> <a class="btn btn-danger" (click)="onDelToCart(item)">Supprimer</a></td>
         </tr>
         <tr>
-              <td>Total</td>
-              <td></td>
-              <td></td>
-              <td>{{total}}</td>
+          <td>Total</td>
+          <td></td>
+          <td></td>
+          <td>{{total}}</td>
         </tr>
       </tbody>
     </table>
+    <a class="btn btn-success" (click)="onToOrder()">Commander</a>
   </ng-container>
 </div>

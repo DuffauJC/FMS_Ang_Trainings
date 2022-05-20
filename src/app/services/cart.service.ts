@@ -23,7 +23,7 @@ export class CartService {
   orderKey = ""
   constructor(private router: Router) { }
 
-  // add item to locastorafge
+  // add item to locastorage
   addTraining(training: Training) {
     let key = JSON.stringify(training.id)
     let sum = training.quantity * training.price
@@ -33,15 +33,18 @@ export class CartService {
     alert("Votre article a bien été ajouté au panier")
 
   }
-  
+
   // load caddy from storage
   loadCaddy() {
     this.listCaddy = []
     for (let i = 1; i < this.caddySize; i++) {
       let key = JSON.stringify(i)
-      let obj = JSON.parse(this.caddy.getItem(key) || "")
-      this.listCaddy.push(obj)
-      this.total += obj.sum
+      let getObj = this.caddy.getItem(key) || ""
+      if (getObj) {
+        let obj = JSON.parse(getObj)
+        this.listCaddy.push(obj)
+        this.total += obj.sum
+      }
     }
     //console.log('total', this.total);
     return this.listCaddy
@@ -53,7 +56,7 @@ export class CartService {
     this.loadCaddy()
     return this.total
   }
-  
+
   // delete item from localstorage
   delStorage(item: Caddy) {
     let key = JSON.stringify(item.ref)
@@ -68,8 +71,8 @@ export class CartService {
     let artStorage = this.loadCaddy()
     let total = this.getTotal()
     let user = this.getCustomer()
-    if (user!=null) {
-      this.orderKey="Order_"+user.name 
+    if (user != null) {
+      this.orderKey = "Order_" + user.name
     }
     // add order on storage
     this.caddy.setItem(this.orderKey, JSON.stringify({ orderUser: this.orderKey, listArticles: artStorage, total: total }))
@@ -96,13 +99,13 @@ export class CartService {
   // get customer from storage
   getCustomer() {
     let customer
-    let cust = this.caddy.getItem('jcd@fr') || "" 
+    let cust = this.caddy.getItem('jcd@fr') || ""
     if (cust) {
-     customer = JSON.parse(cust) 
+      customer = JSON.parse(cust)
     }
     //console.log(customer)
-    
-    if (customer===null) {
+
+    if (customer === null) {
       return null
     }
     return customer

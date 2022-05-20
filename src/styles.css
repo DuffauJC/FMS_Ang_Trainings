@@ -1,1 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
+.error{
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}

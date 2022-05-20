@@ -11,37 +11,45 @@ import { Router } from '@angular/router';
 export class CaddyComponent implements OnInit, DoCheck {
     listCaddy: Caddy[] | undefined
     total = 0
+    display = false
     constructor(private cartService: CartService, private router: Router) { }
 
     // after change vue
     ngDoCheck(): void {
         this.listCaddy = []
+        this.display = false
         this.listCaddy = this.cartService.loadCaddy()
-        this.total=this.cartService.getTotal()
+        if (this.listCaddy.length != 0) {
+            this.display = true
+            this.total = this.cartService.getTotal()
+        }
+
     }
     // on load componenent
     ngOnInit(): void {
         this.listCaddy = []
-        this.listCaddy=this.cartService.loadCaddy()
-        this.total = this.cartService.getTotal()
+        this.display = false
+        this.listCaddy = this.cartService.loadCaddy()
+        if (this.listCaddy.length != 0) {
+            this.display = true
+            this.total = this.cartService.getTotal()
+        }
     }
 
-   
     // delete item from caddy
     onDelToCart(item: Caddy) {
         this.cartService.delStorage(item)
-
     }
 
     // valide order from caddy wuith user session
     onToOrder() {
         let customer = this.cartService.getCustomer()
-       // console.log(customer)
+        // console.log(customer)
         if (customer) {
-             this.cartService.onOrder()  
-          
+            this.cartService.onOrder()
+
         } else {
-             this.router.navigateByUrl('customer') 
+            this.router.navigateByUrl('customer')
         }
     }
 }

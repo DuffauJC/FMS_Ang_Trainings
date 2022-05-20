@@ -13,7 +13,7 @@ export class CaddyComponent implements OnInit, DoCheck {
     total = 0
     constructor(private cartService: CartService, private router: Router) { }
 
-    // after vue change
+    // after change vue
     ngDoCheck(): void {
         this.listCaddy = []
         this.listCaddy = this.cartService.loadCaddy()
@@ -33,10 +33,15 @@ export class CaddyComponent implements OnInit, DoCheck {
 
     }
 
-    // valide order from caddy
+    // valide order from caddy wuith user session
     onToOrder() {
-        this.router.navigateByUrl('customer')
-        this.cartService.onOrder()
+        let customer = this.cartService.getCustomer()
+       // console.log(customer)
+        if (customer) {
+             this.cartService.onOrder()  
+          
+        } else {
+             this.router.navigateByUrl('customer') 
+        }
     }
-
 }

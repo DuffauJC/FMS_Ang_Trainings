@@ -3,22 +3,22 @@
     <form #f="ngForm" (ngSubmit)="onSaveCustomer(f.value)">
       <div class="form-group">
         <label class="control-label">Nom :</label>
-        <input type="text" name="name" class="form-control" [(ngModel)]="cartService.getCustomer().name">
+        <input type="text" name="name" class="form-control" [(ngModel)]="name">
       </div>
       <div class="form-group">
         <label class="control-label">Prénom :</label>
-        <input type="text" name="firstname" class="form-control" [(ngModel)]="cartService.getCustomer().firstname">
+        <input type="text" name="firstname" class="form-control" [(ngModel)]="firstname">
       </div>
       <div class="form-group">
         <label class="control-label">Adresse :</label>
-        <input type="text" name="address" class="form-control" [(ngModel)]="cartService.getCustomer().address">
+        <input type="text" name="address" class="form-control" [(ngModel)]="address">
         <div class="form-group">
           <label class="control-label">Tél. :</label>
-          <input type="text" name="phoneNumber" class="form-control" [(ngModel)]="cartService.getCustomer().phoneNumber">
+          <input type="text" name="phoneNumber" class="form-control" [(ngModel)]="phoneNumber">
         </div>
         <div class="form-group">
           <label class="control-label">Email :</label>
-          <input type="text" name="email" class="form-control" [(ngModel)]="cartService.getCustomer().email">
+          <input type="text" name="email" class="form-control" [(ngModel)]="email">
         </div>
         <button type="submit" class="btn btn-primary"> Next</button>
       </div>

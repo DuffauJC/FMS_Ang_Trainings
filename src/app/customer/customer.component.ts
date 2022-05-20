@@ -7,19 +7,23 @@ import { CartService } from '../services/cart.service';
     templateUrl: 'customer.component.html'
 })
 
-export class CustomerComponent implements OnInit {
+export class CustomerComponent implements OnInit,DoCheck {
     customer: Customer | undefined
-
+    name = ""
+    firstname = ""
+    address = ""
+    phoneNumber = ""
+    email = ""
+    
     constructor(public cartService: CartService) { }
-    // ngDoCheck(): void {
-    //     this.customer = this.cartService.getCustomer()
-    // }
+    ngDoCheck(): void {
+    }
     ngOnInit() {
-this.cartService.getTheCustomer()
+
     }
 
     onSaveCustomer(customer: Customer) {
-        //  console.log(customer)
+          //console.log(customer)
         this.cartService.setCustomer(customer)
     }
 }

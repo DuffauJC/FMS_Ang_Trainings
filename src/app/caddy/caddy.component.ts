@@ -14,17 +14,6 @@ export class CaddyComponent implements OnInit, DoCheck {
     display = false
     constructor(private cartService: CartService, private router: Router) { }
 
-    // after change vue
-    ngDoCheck(): void {
-        this.listCaddy = []
-        this.display = false
-        this.listCaddy = this.cartService.loadCaddy()
-        if (this.listCaddy.length != 0) {
-            this.display = true
-            this.total = this.cartService.getTotal()
-        }
-
-    }
     // on load componenent
     ngOnInit(): void {
         this.listCaddy = []
@@ -36,11 +25,22 @@ export class CaddyComponent implements OnInit, DoCheck {
         }
     }
 
+    // after change vue
+    ngDoCheck(): void {
+        this.listCaddy = []
+        this.display = false
+        this.listCaddy = this.cartService.loadCaddy()
+        if (this.listCaddy.length != 0) {
+            this.display = true
+            this.total = this.cartService.getTotal()
+        }
+
+    }
+   
     // delete item from caddy
     onDelToCart(item: Caddy) {
         this.cartService.delStorage(item)
     }
-
     // valide order from caddy wuith user session
     onToOrder() {
         let customer = this.cartService.getCustomer()

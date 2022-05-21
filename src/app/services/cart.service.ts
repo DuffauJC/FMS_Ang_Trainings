@@ -61,8 +61,6 @@ export class CartService {
   delStorage(item: Caddy) {
     let key = JSON.stringify(item.ref)
     this.caddy.removeItem(key)
-    alert("Votre article a bien été supprimer du panier")
-
   }
 
   // valid order from caddy

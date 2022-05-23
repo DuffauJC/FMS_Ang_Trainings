@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Training } from '../model/training.model';
-import { CartService } from '../services/cart.service';
+import { Training } from '../../model/training.model';
+import { CartService } from '../../services/cart.service';
 @Component({
   selector: 'app-trainings',
   templateUrl: './trainings.component.html',
@@ -8,6 +8,8 @@ import { CartService } from '../services/cart.service';
 
 export class TrainingsComponent implements OnInit {
   listTrainings: Training[] | undefined
+  display = false
+  
   constructor(private cartService:CartService) { }
 
   ngOnInit(): void {
@@ -17,8 +19,13 @@ export class TrainingsComponent implements OnInit {
       { id: 3, name: 'Python', description: 'Formation Python/Django 5 jours', price: 1500, quantity: 1 },
     ]
   }
-  onAddToCart(training:Training) {
+  onAddToCart(training: Training) {
+    //alert("Votre article a bien été ajouté au panier")
+    this.display=true
     this.cartService.addTraining(training)
+    setInterval(() => {
+      this.display=false
+    },1500)
     
   }
 

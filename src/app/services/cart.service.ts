@@ -1,121 +1,70 @@
 import { Injectable } from '@angular/core';
 import { Training } from '../model/training.model';
-import { Caddy } from '../model/caddy.model';
 import { Customer } from '../model/customer.model';
-import { Router } from '@angular/router';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  // pour ranger les données du storage
+  private cart: Map<number, Training>;
   //Initialisation du local storage (panier)
   caddy = window.localStorage;
-  caddySize = this.caddy.length
-  listCustomers: Customer[] | undefined
-  listCaddy: Caddy[] | undefined
-  total = 0
 
-  // customer
-  customer = new Customer("", "", "", "", "")
-
-  // order
-  orderKey = ""
-  constructor(private router: Router) { }
+  constructor() {
+    // au démarrage du service, je récupère le contenu du local storage : command en cours
+    let cart = this.caddy.getItem('cart');
+    if (cart) {  // le panier existe déjà
+      this.cart = new Map(JSON.parse(cart));
+    } // sinon il faut le créer
+    else this.cart = new Map<number, Training>();
+  }
 
   // add item to locastorage
   addTraining(training: Training) {
-    let key = JSON.stringify(training.id)
-    let sum = training.quantity * training.price
-
-    this.caddy.setItem(key, JSON.stringify({ ref: training.id, name: training.name, qty: training.quantity, sum: sum }))
-
-    alert("Votre article a bien été ajouté au panier")
+    this.cart.set(training.id, training);
+    this.saveCart(); //à chaque fois que j'ajoute un élément au panier, je met à jour le local storage
 
   }
-
-  // load caddy from storage
+  saveCart() {
+    this.caddy.setItem('cart', JSON.stringify([...this.cart]));
+  }
+  // load caddy (cart)
   loadCaddy() {
-    this.listCaddy = []
-    for (let i = 1; i < this.caddySize; i++) {
-      let key = JSON.stringify(i)
-      let getObj = this.caddy.getItem(key) || ""
-      if (getObj) {
-        let obj = JSON.parse(getObj)
-        this.listCaddy.push(obj)
-        this.total += obj.sum
-      }
-    }
-    //console.log('total', this.total);
-    return this.listCaddy
+    return Array.from(this.cart.values());
   }
 
   // methode return total caddy
   getTotal() {
-    this.total = 0
-    this.loadCaddy()
-    return this.total
+    let amount = 0;
+    this.cart.forEach(training => {
+      amount += training.price * training.quantity;
+    });
+    return amount;
   }
 
   // delete item from localstorage
-  delStorage(item: Caddy) {
-    let key = JSON.stringify(item.ref)
-    this.caddy.removeItem(key)
-  }
+  delStorage(item: Training) {
+    this.cart.delete(item.id);
+    this.saveCart();
 
-  // valid order from caddy
-  onOrder() {
-    console.log('click');
-    let artStorage = this.loadCaddy()
-    let total = this.getTotal()
-    let user = this.getCustomer()
-    if (user != null) {
-      this.orderKey = "Order_" + user.name
-    }
-    // add order on storage
-    this.caddy.setItem(this.orderKey, JSON.stringify({ orderUser: this.orderKey, listArticles: artStorage, total: total }))
-    // delete article form storage
-    artStorage.forEach(e => {
-      let key = JSON.stringify(e.ref)
-      this.caddy.removeItem(key)
-    })
-    artStorage = []
-    // pop up alert order
-    let order = JSON.parse(this.caddy.getItem(this.orderKey) || "")
-    alert(`Order :${order.orderUser} montant : ${order.total}`)
-    this.router.navigateByUrl('trainings')
   }
-
   // set customer in storage, redirect caddy
   setCustomer(customer: Customer) {
-    let key = customer.email
-    this.caddy.setItem(key, JSON.stringify(customer))
-    alert("Utilisateur enregistré")
-    this.router.navigateByUrl('caddy')
+    this.caddy.setItem('customer', JSON.stringify(customer));
+
   }
 
   // get customer from storage
   getCustomer() {
-    let customer
-    let cust = this.caddy.getItem('jcd@fr') || ""
-    if (cust) {
-      customer = JSON.parse(cust)
-    }
-    //console.log(customer)
-
-    if (customer === null) {
-      return null
-    }
-    return customer
+    let customer = this.caddy.getItem('customer');
+    if (customer) return JSON.parse(customer);
+    return new Customer("unknown", "", "", "", "");
   }
 
-
-  // // get order from storage
-  // getOrder() {
-  //   let key = this.orderKey
-  //   let order = JSON.parse(this.caddy.getItem(key) || "")
-  //    console.log(order)
-  //   return order
-  // }
+  clear() {
+    this.cart.clear();
+    localStorage.clear();
+  }
 
 }

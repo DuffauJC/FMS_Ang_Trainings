@@ -4,16 +4,20 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TrainingsComponent } from './trainings/trainings.component';
-import { CaddyComponent } from './caddy/caddy.component';
-import {CustomerComponent} from './customer/customer.component'
+import { TrainingsComponent } from './components/trainings/trainings.component';
+import { CaddyComponent } from './components/caddy/caddy.component';
+import {CustomerComponent} from './components/customer/customer.component'
+import { NotFoundComponent } from './components/notFound/notFound.component';
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TrainingsComponent,
     CaddyComponent,
-    CustomerComponent
+    CustomerComponent,
+    NotFoundComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

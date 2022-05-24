@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TrainingsService } from 'src/app/services/trainings.service';
 import { Training } from '../../model/training.model';
 import { CartService } from '../../services/cart.service';
 @Component({
@@ -9,15 +11,23 @@ import { CartService } from '../../services/cart.service';
 export class TrainingsComponent implements OnInit {
   listTrainings: Training[] | undefined
   display = false
+  error=null
   
-  constructor(private cartService:CartService) { }
+  constructor(private cartService: CartService,
+    private router: Router,
+    private trainingsService: TrainingsService) { }
 
   ngOnInit(): void {
-    this.listTrainings = [
-      { id: 1, name: 'Java', description: 'Formation Java SE 8 sur 5 jours', price: 1500,quantity:1 },
-      { id: 2, name: 'Dotnet', description: 'Formation JDotNet sur 3 jours', price: 1000, quantity: 1 },
-      { id: 3, name: 'Python', description: 'Formation Python/Django 5 jours', price: 1500, quantity: 1 },
-    ]
+  this.getAllTrainings()
+  }
+
+  getAllTrainings() {
+    this.trainingsService.getTrainings().subscribe({
+      next: (data) => this.listTrainings = data,
+      error: (err) => this.error = err.message,
+      complete:()=>this.error=null
+      
+    })
   }
   onAddToCart(training: Training) {
     //alert("Votre article a bien été ajouté au panier")

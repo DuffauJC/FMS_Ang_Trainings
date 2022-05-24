@@ -1,0 +1,73 @@
+{
+  "trainings": [
+    {
+      "id": 1,
+      "name": "Java",
+      "description": "Formation Java SE 8 sur 5 jours",
+      "price": 1500,
+      "quantity": 1
+    },
+    {
+      "id": 2,
+      "name": "Dotnet",
+      "description": "Formation JDotNet sur 3 jours",
+      "price": 1000,
+      "quantity": 1
+    },
+    {
+      "id": 3,
+      "name": "Python",
+      "description": "Formation Python/Django 5 jours",
+      "price": 1500,
+      "quantity": 1
+    },
+    {
+      "id": 4,
+      "name": "Php",
+      "description": "Initation au Dev/Web avec hp 4 jours",
+      "price": 1300,
+      "quantity": 1
+    },
+    {
+      "id": 5,
+      "name": "NodeJs",
+      "description": "Prise en main de  NodeJs/Express 2 jours",
+      "price": 1400,
+      "quantity": 1
+    },
+    {
+      "id": 6,
+      "name": "Java Avancé",
+      "description": "Formation java avancé/Bdd 3 jours",
+      "price": 1200,
+      "quantity": 1
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "name": "Rambo",
+      "firstname": "Jhon",
+      "address": "Nevada",
+      "phoneNumber": "0604",
+      "email": "rambo@usa.com"
+    },
+    {
+      "id": 2,
+      "name": "Prost",
+      "firstname": "Alain",
+      "address": "17, rue du Lampion",
+      "phoneNumber": "0605",
+      "email": "alainprost@free.fr"
+    },
+    {
+      "name": "duf",
+      "firstName": "jc",
+      "address": "887 rte",
+      "phone": "0605",
+      "email": "jcd@fr",
+      "id": 3
+    }
+ 
+  ]
+}

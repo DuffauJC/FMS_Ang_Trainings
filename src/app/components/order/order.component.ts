@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
+import { CustomerService } from 'src/app/services/authentification.service';
 
 @Component({
   selector: 'app-order',
@@ -8,7 +9,9 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class OrderComponent implements OnInit {
   dateOrder : Date = new Date();
-  constructor(public cartService : CartService, private router : Router) { }
+  constructor(public cartService: CartService,
+    private router: Router,
+    public customerService: CustomerService) { }
 
   ngOnInit(): void {
     

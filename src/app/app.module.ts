@@ -10,6 +10,7 @@ import { CaddyComponent } from './components/caddy/caddy.component';
 import {CustomerComponent} from './components/customer/customer.component'
 import { NotFoundComponent } from './components/notFound/notFound.component';
 import { OrderComponent } from './components/order/order.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { OrderComponent } from './components/order/order.component';
     CaddyComponent,
     CustomerComponent,
     NotFoundComponent,
-    OrderComponent
+    OrderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

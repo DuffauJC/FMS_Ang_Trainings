@@ -2,7 +2,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { Training } from '../../model/training.model';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
-
+import { CustomerService } from 'src/app/services/authentification.service';
 @Component({
     selector: 'app-caddy',
     templateUrl: 'caddy.component.html'
@@ -12,7 +12,7 @@ export class CaddyComponent implements OnInit, DoCheck {
     listCaddy: Training[] | undefined
     total = 0
     display = false
-    constructor(private cartService: CartService, private router: Router) { }
+    constructor(private cartService: CartService, private router: Router, private customerService: CustomerService) { }
 
     // on load componenent
     ngOnInit(): void {
@@ -43,9 +43,9 @@ export class CaddyComponent implements OnInit, DoCheck {
     }
     // valide order from caddy wuith user session
     onToOrder() {
-        let customer = this.cartService.getCustomer()
+        let customer = this.customerService.getCustomerFromStorage()
         // console.log(customer)
-        if (customer.name !="unknown") {
+        if (customer !=null) {
             this.router.navigateByUrl('order')
 
         } else {

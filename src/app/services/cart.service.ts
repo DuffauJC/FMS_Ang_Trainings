@@ -49,19 +49,7 @@ export class CartService {
     this.saveCart();
 
   }
-  // set customer in storage, redirect caddy
-  setCustomer(customer: Customer) {
-    this.caddy.setItem('customer', JSON.stringify(customer));
-
-  }
-
-  // get customer from storage
-  getCustomer() {
-    let customer = this.caddy.getItem('customer');
-    if (customer) return JSON.parse(customer);
-    return new Customer("unknown", "", "", "", "");
-  }
-
+ 
   clear() {
     this.cart.clear();
     localStorage.clear();

@@ -19,7 +19,7 @@ export class CustomerComponent implements OnInit, DoCheck {
         private router: Router,
         private customerService: CustomerService) {
 
-       // let customer = this.cartService.getCustomer()
+        // let customer = this.cartService.getCustomer()
         // this.myForm = new FormGroup({
         //     name: new FormControl(customer.name),
         //     firstName: new FormControl(customer.firstName),
@@ -31,13 +31,13 @@ export class CustomerComponent implements OnInit, DoCheck {
 
     ngDoCheck(): void {
     }
-    ngOnInit() {
+    ngOnInit(): void {
 
     }
 
     onSaveCustomer(customer: Customer) {
         this.display = true
-        this.cartService.setCustomer(customer)
+
         this.customerService.postCustomer(customer)
         setInterval(() => {
             this.display = false
@@ -45,7 +45,7 @@ export class CustomerComponent implements OnInit, DoCheck {
         }, 1500)
 
         // if (form.valid) {
-         
+
         // }
 
 

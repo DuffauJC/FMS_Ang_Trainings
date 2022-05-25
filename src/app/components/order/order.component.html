@@ -1,23 +1,26 @@
-<div class="container" style="padding-top: 15px;" >
-  <div class="card" style="max-width: 900px;">
-    <div class="card-header">Récap de votre commande</div>     
+<div class="container order">
+  <div class="card orderCard">
+    <div class="card-header">Récap de votre commande</div>
 
     <div class="row">
-      <div class="col-md-6">   
+      <div class="col-md-6">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Nom du Client : {{cartService.getCustomer().name}} </li>
-          <li class="list-group-item">Prénom du Client : {{cartService.getCustomer().firstName}}</li>
-          <li class="list-group-item">Adresse Client : {{cartService.getCustomer().address}}</li>
-          <li class="list-group-item">Tel Client : {{cartService.getCustomer().phone}}</li>
-          <li class="list-group-item">Email : {{cartService.getCustomer().email}}</li>
-        </ul>     
+          <li class="list-group-item">Nom du Client : {{customerService.getCustomerFromStorage().name}} </li>
+          <li class="list-group-item">Prénom du Client : {{customerService.getCustomerFromStorage().firstName}}</li>
+          <li class="list-group-item">Adresse Client : {{customerService.getCustomerFromStorage().address}}</li>
+          <li class="list-group-item">Tel Client : {{customerService.getCustomerFromStorage().phoneNumber}}</li>
+          <li class="list-group-item">Email : {{customerService.getCustomerFromStorage().email}}</li>
+        </ul>
       </div>
-    
+
       <div class="col-md-6">
         <table class="table">
           <thead>
             <tr>
-              <th>ID</th>    <th>Nom</th>     <th>Quantité</th>      <th>Prix</th>
+              <th>ID</th>
+              <th>Nom</th>
+              <th>Quantité</th>
+              <th>Prix</th>
             </tr>
           </thead>
           <tbody>
@@ -28,7 +31,7 @@
               <td>{{p.price | number:'0.2'}}</td>
             </tr>
             <tr>
-              <td colspan="3"><strong>  Total : </strong></td>
+              <td colspan="3"><strong> Total : </strong></td>
               <td>{{cartService.getTotal() | number:'0.2'}}</td>
             </tr>
           </tbody>
@@ -46,7 +49,8 @@
         <label> {{dateOrder | date:"MM/dd/yy"}}</label>
       </div>
       <div class="d-md-flex justify-content-md-end">
-        <button class="btn btn-success" style="max-width: 200px;" (click)="onOrder()">Confirmer la commande</button>   
+        <button class="btn btn-success" style="max-width: 200px;" (click)="onOrder()">Confirmer la commande</button>
       </div>
     </div>
+  </div>
 </div>

@@ -50,7 +50,9 @@
       "firstname": "Jhon",
       "address": "Nevada",
       "phoneNumber": "0604",
-      "email": "rambo@usa.com"
+      "email": "rambo@usa.com",
+      "password": "25ty47",
+      "role": "customer"
     },
     {
       "id": 2,
@@ -58,16 +60,38 @@
       "firstname": "Alain",
       "address": "17, rue du Lampion",
       "phoneNumber": "0605",
-      "email": "alainprost@free.fr"
+      "email": "alainprost@free.fr",
+      "password": "25ty48",
+      "role": "customer"
     },
     {
       "name": "duf",
       "firstName": "jc",
       "address": "887 rte",
-      "phone": "0605",
+      "phoneNumber": "0605",
       "email": "jcd@fr",
-      "id": 3
+      "id": 3,
+      "password": "25ty50",
+      "role": "admin"
+    },
+    {
+      "address": "25, rue de la carotte",
+      "email": "rabbit@free.fr",
+      "firstName": "Roger",
+      "name": "Rabbit",
+      "password": "aq4588",
+      "phoneNumber": "4578",
+      "role": "customer",
+      "id": 4
+    },
+    {
+      "name": "lapin",
+      "firstName": "rose",
+      "address": "47rte",
+      "email": "lapin@gmail.com",
+      "phoneNumber": "0412",
+      "password": "45aqw",
+      "id": 5
     }
- 
   ]
 }

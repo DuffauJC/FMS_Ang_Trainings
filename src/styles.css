@@ -6,8 +6,7 @@
   height: 600px;
 }
 
-.home h1
- {
+.home h1 {
   color: white;
   font-size: 80px;
   text-align: center;
@@ -29,6 +28,12 @@ nav {
   margin-left: 20px;
 }
 
+.welcome {
+  font-size: 30px;
+  font-weight: bolder;
+  font-style: italic;
+}
+
 .error {
   box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
 }
@@ -36,4 +41,12 @@ nav {
 table {
   border: 2px solid coral;
   box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
+}
+
+.order {
+  padding-top: 15px;
+}
+
+.orderCard {
+ max-width: 900px; 
 }

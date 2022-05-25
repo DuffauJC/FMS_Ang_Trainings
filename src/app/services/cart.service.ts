@@ -22,7 +22,13 @@ export class CartService {
 
   // add item to locastorage
   addTraining(training: Training) {
-    this.cart.set(training.id, training);
+    
+    let tr=this.cart.get(training.id)
+    if (tr) {
+     tr.quantity+=training.quantity
+    } else {
+      this.cart.set(training.id, training);
+    }
     this.saveCart(); //à chaque fois que j'ajoute un élément au panier, je met à jour le local storage
 
   }
@@ -52,7 +58,7 @@ export class CartService {
  
   clear() {
     this.cart.clear();
-    localStorage.clear();
+    localStorage.removeItem('cart')
   }
 
 }

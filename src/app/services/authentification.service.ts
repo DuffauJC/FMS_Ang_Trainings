@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Customer } from '../model/customer.model';
-import { NgForm } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 
@@ -82,6 +81,9 @@ export class CustomerService {
     getCustomerFromStorage() {
         let customer = localStorage.getItem('customer');
         if (customer) return JSON.parse(customer);
-        return null
+        return new Customer("unknown","","","","","","")
+    }
+    removeCustomerFromStorage() {
+        localStorage.removeItem('customer')
     }
 }

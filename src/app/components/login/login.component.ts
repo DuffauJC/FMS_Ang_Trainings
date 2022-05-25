@@ -30,6 +30,8 @@ export class LoginComponent implements OnInit {
     }
 
     onLogin(form: NgForm): void {
+        //console.log(form.value);
+        
         this.data.email = form.value.email
         this.data.password = form.value.password
         

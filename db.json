@@ -5,42 +5,64 @@
       "name": "Java",
       "description": "Formation Java SE 8 sur 5 jours",
       "price": 1500,
-      "quantity": 1
+      "quantity": 1,
+      "imgURL":"assets/img/java.png"
     },
     {
       "id": 2,
       "name": "Dotnet",
       "description": "Formation JDotNet sur 3 jours",
       "price": 1000,
-      "quantity": 1
+      "quantity": 1,
+      "imgURL": "assets/img/visual-basic.png"
     },
     {
       "id": 3,
       "name": "Python",
       "description": "Formation Python/Django 5 jours",
       "price": 1500,
-      "quantity": 1
+      "quantity": 1,
+      "imgURL": "assets/img/python.png"
     },
     {
       "id": 4,
       "name": "Php",
-      "description": "Initation au Dev/Web avec hp 4 jours",
+      "description": "Initation au Dev/Web 4 jours",
       "price": 1300,
-      "quantity": 1
+      "quantity": 1,
+      "imgURL": "assets/img/php.png"
     },
     {
       "id": 5,
       "name": "NodeJs",
-      "description": "Prise en main de  NodeJs/Express 2 jours",
+      "description": "Formation NodeJs/Express 2 jours",
       "price": 1400,
-      "quantity": 1
+      "quantity": 1,
+      "imgURL": "assets/img/nodejs.png"
     },
     {
       "id": 6,
       "name": "Java Avancé",
       "description": "Formation java avancé/Bdd 3 jours",
       "price": 1200,
-      "quantity": 1
+      "quantity": 1,
+      "imgURL": "assets/img/java.png"
+    },
+    {
+      "id": 7,
+      "name": "React",
+      "description": "Formation React/Front 13 jours",
+      "price": 1200,
+      "quantity": 1,
+      "imgURL": "assets/img/react.png"
+    },
+    {
+      "id": 8,
+      "name": "Github",
+      "description": "Formation Git/Github 10 jours",
+      "price": 1600,
+      "quantity": 1,
+      "imgURL": "assets/img/github.png"
     }
   ],
   "customers": [

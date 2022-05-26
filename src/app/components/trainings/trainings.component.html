@@ -1,5 +1,5 @@
- <div *ngIf="display" class=" alert bg-success addCaddyConfirm">
-   Article ajouté au panier. </div>
+ <!-- <div *ngIf="display" class=" alert bg-success addCaddyConfirm">
+   Article ajouté au panier. </div> -->
 
  <div class="container">
    <div class=" d-flex flex-wrap justify-content-around">
@@ -10,7 +10,11 @@
              <h5 class="card-title">{{training.name}}</h5>
              <p>{{training.description}}</p>
              <p class="card-text bold-blue">{{training.price}} €</p>
-             <button id="addCaddy" class="btn sbmt-btn" (click)="onAddToCart(training)">Ajouter au panier</button>
+             <!-- <button id="addCaddy" class="btn sbmt-btn" (click)="onAddToCart(training)">Ajouter au panier</button> -->
+             <button class="cart-button" (click)="onAddToCart(training)"> <span class=" add-to-cart">Add to cart</span>
+               <span class="added">Item
+                 added</span> <i class="fa fa-plus"></i> <i class="fa fa-circle-thin"></i> <i class="fa fa-check"></i>
+             </button>
            </div>
          </div>
        </div>

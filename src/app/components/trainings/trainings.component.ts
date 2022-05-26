@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 import { TrainingsService } from 'src/app/services/trainings.service';
 import { Training } from '../../model/training.model';
@@ -9,23 +9,21 @@ import { CartService } from '../../services/cart.service';
   templateUrl: './trainings.component.html',
 })
 
-export class TrainingsComponent implements OnInit {
+export class TrainingsComponent implements OnInit, DoCheck {
   listTrainings: Training[] | undefined
   display = false
   error = null
-
-
 
   constructor(private cartService: CartService,
     private router: Router,
     private trainingsService: TrainingsService) { }
 
-
-
   ngOnInit(): void {
     this.getAllTrainings()
   }
-
+  ngDoCheck(): void {
+    this.findButton()
+  }
 
   getAllTrainings() {
     this.trainingsService.getTrainings().subscribe({
@@ -36,15 +34,31 @@ export class TrainingsComponent implements OnInit {
     })
   }
   onAddToCart(training: Training) {
-    this.display = true
+    //this.display = true
     this.cartService.addTraining(training)
-    setInterval(() => {
-      this.display = false
-    }, 1500)
+    this.remClick()
 
   }
+  cartClick(this: any) {
+    this.button = this;
+    this.button.classList.add('clicked');
+  }
+  remClick() {
+    const cartButtons = document.querySelectorAll('.cart-button');
+    //console.log(cartButtons)
+    cartButtons.forEach(button => {
+     setTimeout(() => {
+        button.classList.remove('clicked') 
+      },1500);
+     
+    })
+  }
 
-
-
-
+  findButton() {
+    const cartButtons = document.querySelectorAll('.cart-button');
+    //console.log(cartButtons)
+    cartButtons.forEach(button => {
+      button.addEventListener('click', this.cartClick);
+    });
+  }
 }

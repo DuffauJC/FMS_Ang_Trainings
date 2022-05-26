@@ -85,19 +85,8 @@ table th{
 .column{
   margin-left: 20px;
 }
+
 /* bouton ajout panier */
-/* #addCaddy:hover {
-  background: #272727;
-  color: white;
-} */
-
-/* #addCaddy {
-  background-color: #ff7f50;
-  border: 2px solid #272727;
-  border-radius: 0;
-} */
-/* ************* */
-
 
 .cart-button {
   position: relative;
@@ -252,13 +241,6 @@ table th{
   }
 }
 /* ************ */
-/* .addCaddyConfirm {
-  z-index: 10;
-  position: sticky !important;
-  top: 10px;
-  margin: auto;
-  width: 300px;
-  text-align: center;
-} */
+
 
 

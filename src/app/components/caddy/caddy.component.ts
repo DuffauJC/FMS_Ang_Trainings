@@ -41,6 +41,9 @@ export class CaddyComponent implements OnInit, DoCheck {
     onDelToCart(item: Training) {
         this.cartService.delStorage(item)
     }
+    clearCart() {
+        this.cartService.clear()
+    }
     // valide order from caddy wuith user session
     onToOrder() {
         let customer = this.customerService.getCustomerFromStorage()

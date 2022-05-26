@@ -2,25 +2,100 @@
 .container {
   margin-top: 70px;
 }
-
+li{
+cursor: pointer;
+}
 .home {
   box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
   background-image: url('/assets/img/desktop.jpg');
   background-position: center;
   height: 600px;
 }
-
-/* bouton ajout panier */
-#addCaddy:hover {
-  background: #272727;
+.img_cart {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}
+#Caddy{
+  position: absolute;
+  right: 50px;
+}
+#qty-cart {
+  color: #FFF;
+}
+.home h1 {
   color: white;
+  font-size: 80px;
+  text-align: center;
+  padding-top: 100px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-shadow: 0 -1px 4px #FFF,
+    0 -2px 10px #ff0,
+    0 -10px 20px #ff8000,
+    0 -18px 40px #F00;
 }
 
-#addCaddy {
+#header {
+  background-color: coral;
+  margin-bottom: 10px;
+  position: sticky !important;
+  top: 0px;
+  z-index: 10;
+}
+
+.card-training {
+  box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 18rem;
+}
+
+.logo {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.welcome {
+  font-size: 30px;
+  font-weight: bolder;
+  font-style: italic;
+}
+
+.error {
+  box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
+}
+
+table, tr,td{
+  border: none;
+}
+table th{
+  font-size: 20px;
+}
+.order {
+  padding-top: 15px;
+}
+
+.orderCard {
+  max-width: 900px;
+}
+.delete{
+   width: 40px;
+   cursor: pointer;
+}
+.column{
+  margin-left: 20px;
+}
+/* bouton ajout panier */
+/* #addCaddy:hover {
+  background: #272727;
+  color: white;
+} */
+
+/* #addCaddy {
   background-color: #ff7f50;
   border: 2px solid #272727;
   border-radius: 0;
-}
+} */
 /* ************* */
 
 
@@ -177,63 +252,13 @@
   }
 }
 /* ************ */
-.addCaddyConfirm {
+/* .addCaddyConfirm {
   z-index: 10;
   position: sticky !important;
   top: 10px;
   margin: auto;
   width: 300px;
   text-align: center;
-}
+} */
 
-.home h1 {
-  color: white;
-  font-size: 80px;
-  text-align: center;
-  padding-top: 100px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  text-shadow: 0 -1px 4px #FFF,
-    0 -2px 10px #ff0,
-    0 -10px 20px #ff8000,
-    0 -18px 40px #F00;
-}
 
-#header {
-  background-color: coral;
-  margin-bottom: 10px;
-}
-
-.card-training {
-  box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
-  margin-top: 10px;
-  margin-bottom: 10px;
-  width: 18rem;
-}
-
-.logo {
-  margin-right: 20px;
-  margin-left: 20px;
-}
-
-.welcome {
-  font-size: 30px;
-  font-weight: bolder;
-  font-style: italic;
-}
-
-.error {
-  box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
-}
-
-table {
-  border: 2px solid coral;
-  box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
-}
-
-.order {
-  padding-top: 15px;
-}
-
-.orderCard {
-  max-width: 900px;
-}

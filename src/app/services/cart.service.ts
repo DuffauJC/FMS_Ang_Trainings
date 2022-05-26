@@ -22,7 +22,6 @@ export class CartService {
 
   // add item to locastorage
   addTraining(training: Training) {
-    
     let tr=this.cart.get(training.id)
     if (tr) {
      tr.quantity+=training.quantity
@@ -48,7 +47,10 @@ export class CartService {
     });
     return amount;
   }
-
+// caddy lenght (header nav)
+  caddylenght() {
+   return this.cart.size
+  }
   // delete item from localstorage
   delStorage(item: Training) {
     this.cart.delete(item.id);

@@ -81,7 +81,7 @@ export class CustomerService {
     getCustomerFromStorage() {
         let customer = localStorage.getItem('customer');
         if (customer) return JSON.parse(customer);
-        return new Customer("unknown","","","","","","")
+        return new Customer("","unknown","","","","","")
     }
     removeCustomerFromStorage() {
         localStorage.removeItem('customer')

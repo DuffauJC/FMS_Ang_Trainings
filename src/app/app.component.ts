@@ -1,5 +1,6 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/services/authentification.service';
+import { CartService } from './services/cart.service';
 import { Customer } from './model/customer.model';
 @Component({
   selector: 'app-root',
@@ -7,15 +8,17 @@ import { Customer } from './model/customer.model';
 })
 export class AppComponent implements OnInit, DoCheck {
   title = 'traingings-front-app';
-  customer:Customer|undefined
+  customer: Customer | undefined
   name = ""
   display = false
   loggin = true
-  logout=false
-
+  logout = false
+  caddySize = 0
+  
   constructor(private customerService: CustomerService,
+    private cartService: CartService
   ) {
-  this.customer = new Customer("unknown", "","","","","","")
+    this.customer = new Customer("unknown", "", "", "", "", "", "")
   }
 
   ngOnInit(): void {
@@ -23,18 +26,24 @@ export class AppComponent implements OnInit, DoCheck {
   }
   ngDoCheck(): void {
     this.showName()
+
+   this.caddySize= this.cartService.caddylenght()
   }
 
   showName() {
-    this.name= this.customerService.getCustomerFromStorage().name
+    this.name = this.customerService.getCustomerFromStorage().firstName
     if (this.name != "unknown") {
       this.display = true
       this.loggin = false
-      this.logout=true
+      this.logout = true
     }
   }
   disconnect() {
     this.customerService.removeCustomerFromStorage()
+    this.display = false
+    this.loggin = true
+    this.logout = false
+
   }
 
 }

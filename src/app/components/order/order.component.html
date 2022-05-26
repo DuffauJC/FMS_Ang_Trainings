@@ -1,56 +1,113 @@
 <div class="container order">
-  <div class="card orderCard">
-    <div class="card-header">Récap de votre commande</div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Nom du Client : {{customerService.getCustomerFromStorage().name}} </li>
-          <li class="list-group-item">Prénom du Client : {{customerService.getCustomerFromStorage().firstName}}</li>
-          <li class="list-group-item">Adresse Client : {{customerService.getCustomerFromStorage().address}}</li>
-          <li class="list-group-item">Tel Client : {{customerService.getCustomerFromStorage().phoneNumber}}</li>
-          <li class="list-group-item">Email : {{customerService.getCustomerFromStorage().email}}</li>
-        </ul>
+  <!-- Title -->
+  <div class="d-flex justify-content-between align-items-center py-3">
+    <h2 class="h5 mb-0"><a href="#" class="text-muted"></a> Order #16123222</h2>
+  </div>
+  <!-- Main content -->
+  <div class="row">
+    <div class="col-lg-8">
+      <!-- Details -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="mb-3 d-flex justify-content-between">
+            <div>
+              <span class="me-3">{{dateOrder | date:"MM/dd/yy"}}</span>
+              <span class="me-3">#16123222</span>
+              <span class="me-3">Visa -1234</span>
+              <span class="badge rounded-pill bg-info">SHIPPING</span>
+            </div>
+          </div>
+          <table class="table table-borderless">
+            <tbody>
+              <tr *ngFor="let p of cartService.loadCaddy()">
+                <td>
+                  <div class="d-flex mb-2">
+                    <div class="flex-shrink-0">
+                      <img src="{{p.imgURL}}" alt="" width="35" class="img-fluid">
+                    </div>
+                    <div class="flex-lg-grow-1 ms-3">
+                      <h6 class="small mb-0"><a href="#" class="text-reset">{{p.name}}</a></h6>
+                      <span class="small">{{p.description}}</span>
+                    </div>
+                  </div>
+                </td>
+                <td>{{p.quantity}}</td>
+                <td class="text-end">{{p.price}} €</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2">Shipping</td>
+                <td class="text-end">$20.00</td>
+              </tr>
+              <tr>
+                <td colspan="2">Discount (Code: NEWYEAR)</td>
+                <td class="text-danger text-end">-$10.00</td>
+              </tr>
+              <tr class="fw-bold">
+                <td colspan="2">TOTAL</td>
+                <td class="text-end">{{cartService.getTotal() | number:'0.2'}} €</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
-
-      <div class="col-md-6">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nom</th>
-              <th>Quantité</th>
-              <th>Prix</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let p of cartService.loadCaddy()">
-              <td>{{p.id}}</td>
-              <td>{{p.name}}</td>
-              <td>{{p.quantity}}</td>
-              <td>{{p.price | number:'0.2'}}</td>
-            </tr>
-            <tr>
-              <td colspan="3"><strong> Total : </strong></td>
-              <td>{{cartService.getTotal() | number:'0.2'}}</td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- Payment -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-6">
+              <h3 class="h6">Payment Method</h3>
+              <p>Visa -1234 <br>
+                Total: {{cartService.getTotal() | number:'0.2'}} € </p>
+              <button class="btn btn-success" style="max-width: 200px;" (click)="onOrder()">Paid</button>
+            </div>
+            <div class="col-lg-6">
+              <h3 class="h6">Billing address</h3>
+              <address>
+                <strong>{{customerService.getCustomerFromStorage().name}}</strong><br>
+                <strong>{{customerService.getCustomerFromStorage().firstName}}</strong><br>
+                {{customerService.getCustomerFromStorage().address}}<br>
+                San Francisco, CA 94103<br>
+                <abbr title="Phone">P:</abbr> (123) {{customerService.getCustomerFromStorage().phoneNumber}}<br>
+                {{customerService.getCustomerFromStorage().email}}<br>
+              </address>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="card-footer">
-      <div class="form-group">
-        <label>Numéro de commande : </label>
-        <label> ??? </label>
+    <div class="col-lg-4">
+      <!-- Customer Notes -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h3 class="h6">Customer Notes</h3>
+          <p>Sed enim, faucibus litora velit vestibulum habitasse. Cras lobortis cum sem aliquet mauris rutrum.
+            Sollicitudin. Morbi, sem tellus vestibulum porttitor.</p>
+        </div>
       </div>
-      <div class="form-group">
-        <label>Date de la commande : </label>
-        <label> {{dateOrder | date:"MM/dd/yy"}}</label>
-      </div>
-      <div class="d-md-flex justify-content-md-end">
-        <button class="btn btn-success" style="max-width: 200px;" (click)="onOrder()">Confirmer la commande</button>
+      <div class="card mb-4">
+        <!-- Shipping information -->
+        <div class="card-body">
+          <h3 class="h6">Shipping Information</h3>
+          <strong>FedEx</strong>
+          <span><a href="#" class="text-decoration-underline" target="_blank">FF1234567890</a> <i
+              class="bi bi-box-arrow-up-right"></i> </span>
+          <hr>
+          <h3 class="h6">Address</h3>
+          <address>
+            <strong>{{customerService.getCustomerFromStorage().name}}</strong><br>
+            <strong>{{customerService.getCustomerFromStorage().firstName}}</strong><br>
+            {{customerService.getCustomerFromStorage().address}}<br>
+            San Francisco, CA 94103<br>
+            <abbr title="Phone">P:</abbr> (123) {{customerService.getCustomerFromStorage().phoneNumber}}<br>
+            {{customerService.getCustomerFromStorage().email}}<br>
+          </address>
+        </div>
       </div>
     </div>
+  </div>
+  <div *ngIf="problemOrder" class=" alert alert-danger mt-5 col-md-3">
+    Vous avec été déconnécté,reconnectez-vous.
   </div>
 </div>

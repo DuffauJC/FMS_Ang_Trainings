@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         } else {
             this.problemLogin=true
         }
-        setInterval(() => {
+        setTimeout(() => {
             this.display = false
             this.problemLogin=false
             this.router.navigateByUrl('home')

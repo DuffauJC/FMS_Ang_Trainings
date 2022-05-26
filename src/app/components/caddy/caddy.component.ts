@@ -12,6 +12,8 @@ export class CaddyComponent implements OnInit, DoCheck {
     listCaddy: Training[] | undefined
     total = 0
     display = false
+    problemOrder = false
+
     constructor(private cartService: CartService, private router: Router, private customerService: CustomerService) { }
 
     // on load componenent
@@ -36,7 +38,7 @@ export class CaddyComponent implements OnInit, DoCheck {
         }
 
     }
-   
+
     // delete item from caddy
     onDelToCart(item: Training) {
         this.cartService.delStorage(item)
@@ -48,11 +50,10 @@ export class CaddyComponent implements OnInit, DoCheck {
     onToOrder() {
         let customer = this.customerService.getCustomerFromStorage()
         // console.log(customer)
-        if (customer !=null) {
-            this.router.navigateByUrl('order')
-
+        if (customer.firstName === "unknown") {
+            this.problemOrder = true
         } else {
-            this.router.navigateByUrl('customer')
+            this.router.navigateByUrl('order')
         }
     }
 }

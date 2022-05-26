@@ -27,8 +27,6 @@ export class AppComponent implements OnInit, DoCheck {
 
   showName() {
     this.name= this.customerService.getCustomerFromStorage().name
-    console.log(this.name);
-    
     if (this.name != "unknown") {
       this.display = true
       this.loggin = false

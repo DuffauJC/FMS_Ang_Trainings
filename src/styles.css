@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+.container {
+  margin-top: 70px;
+}
+
 .home {
   box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
   background-image: url('/assets/img/desktop.jpg');
@@ -6,8 +10,25 @@
   height: 600px;
 }
 
+/* bouton ajout panier */
+#addCaddy:hover {
+  background: #272727;
+  color: white;
+}
+
 #addCaddy {
   background-color: #ff7f50;
+  border: 2px solid #272727;
+  border-radius: 0;
+}
+
+.addCaddyConfirm {
+  z-index: 10;
+  position: sticky !important;
+  top: 10px;
+  margin: auto;
+  width: 300px;
+  text-align: center;
 }
 
 .home h1 {

@@ -455,6 +455,19 @@ table th{
 .listAdmin{
   justify-content: space-around;
 }
+.x-del{
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  right: 5px;
+}
+.x-edit{
+  border: 5px solid yellow;
+  cursor: pointer;
+  position: absolute;
+  top: 40px;
+  right: 0px;
+}
 .product-content {
   border: 2px solid #dfe5e9;
   margin-bottom: 20px;

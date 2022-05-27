@@ -1,5 +1,4 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { Router } from '@angular/router';
 import { Training } from 'src/app/model/training.model';
 import { CartService } from 'src/app/services/cart.service';
 import { TrainingsService } from 'src/app/services/trainings.service';
@@ -14,13 +13,12 @@ export class ListTrainingComponent implements OnInit, DoCheck {
     error = null
 
     constructor(private cartService: CartService,
-        private router: Router,
-        private trainingsService: TrainingsService) { }
-
-    ngOnInit(): void {
+        private trainingsService: TrainingsService) {
+    }
+    ngOnInit() {
         this.getAllTrainings()
     }
-    ngDoCheck(): void {
+    ngDoCheck() {
 
     }
 
@@ -31,6 +29,13 @@ export class ListTrainingComponent implements OnInit, DoCheck {
             complete: () => this.error = null
 
         })
+    }
+    delItem(training: Training) {
+        this.trainingsService.delItem(training)
+        let item = document.getElementById('item-' + training.id)
+        if (item) {
+          item.style.display="none"  
+        }
     }
 
 }

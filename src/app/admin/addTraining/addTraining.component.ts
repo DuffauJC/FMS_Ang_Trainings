@@ -12,7 +12,6 @@ import { TrainingsService } from 'src/app/services/trainings.service';
 export class AddTrainingComponent implements OnInit,DoCheck{
     display = false
 
-    defaultImgUrl ="assets/img/unknown.png"
     data = {
         name: "",
         description:"",
@@ -32,14 +31,12 @@ export class AddTrainingComponent implements OnInit,DoCheck{
         this.description = ""
         this.price = 0
         this.quantity = 1
-        this.imgURL=""
-
-
+        this.imgURL="assets/img/unknown.png"
          }
 
     ngOnInit() { }
 
-    ngDoCheck(): void {
+    ngDoCheck() {
         
     }
     onSaveTraining(form: NgForm) {
@@ -55,9 +52,9 @@ export class AddTrainingComponent implements OnInit,DoCheck{
         this.display = true
 
         this.trainingsService.postTraining(this.data)
-        setInterval(() => {
+        setTimeout(() => {
             this.display = false
-            
+            document.querySelector('form')?.reset()
         }, 1500)
     }
 }

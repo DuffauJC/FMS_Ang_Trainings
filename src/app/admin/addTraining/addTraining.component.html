@@ -17,11 +17,11 @@
 
         <div class="form-group">
           <label class="control-label">Quantité :</label>
-          <input [defaultValue]="1" type="text" name="quantity" class="form-control" [(ngModel)]="quantity">
+          <input  type="text" name="quantity" class="form-control" [(ngModel)]="quantity">
         </div>
         <div class="form-group">
           <label class="control-label">Img url : </label>
-          <input [defaultValue]="defaultImgUrl" type="text" name="imgURL" required class="form-control"
+          <input  type="text" name="imgURL" required class="form-control"
             [(ngModel)]="imgURL">
         </div>
         <button type="submit" [disabled]="!f.valid" class="btn btn-primary"> Next</button>

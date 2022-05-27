@@ -3,7 +3,7 @@
   <div *ngIf="listTrainings else loading" class="md-6 d-flex flex-wrap listAdmin">
     <!-- product -->
     <div *ngFor="let training of listTrainings">
-      <div class="product-content product-wrap">
+      <div class="product-content product-wrap" id="item-{{training.id}}">
         <div class="row">
           <div class="col-md-5 col-sm-12 col-xs-12">
             <div class="product-image">
@@ -18,18 +18,18 @@
               <p class="price-container">
                 <span>{{training.price}} €</span>
               </p>
-              <span class="tag1"></span>
+              <a class="x-del" (click)="delItem(training)"><img src="../../../assets/img/x-button.png" alt="delete"></a>
+               <a class=""><img class="x-edit" src="../../../assets/img/edit.png" alt="edit"></a>
             </div>
             <div class="description">
               <h6>{{training.description}}</h6>
+              
             </div>
             <div class="product-info smart-form">
-              <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-6">
-                  <a class="btn btn-danger">Supprimer</a>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-6">
-                  <a class="btn btn-warning">Modifier</a>
+              <div class="row"> 
+                <div class="col-md-6 col-sm-6 col-xs-6 d-flex">
+                 
+                   
                 </div>
               </div>
             </div>

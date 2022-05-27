@@ -66,8 +66,8 @@
     },
     {
       "name": "C ++",
-      "description": "Formation C ++ sur 5 jours",
-      "price": 1700,
+      "description": "Formation C ++ sur 15 ans",
+      "price": "250000000",
       "quantity": 1,
       "imgURL": "assets/img/c-.png",
       "id": 9

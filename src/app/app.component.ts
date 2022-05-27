@@ -10,11 +10,14 @@ export class AppComponent implements OnInit, DoCheck {
   title = 'traingings-front-app';
   customer: Customer | undefined
   name = ""
+  role = ""
   display = false
   loggin = true
   logout = false
   caddySize = 0
-  
+  admin = false
+
+
   constructor(private customerService: CustomerService,
     private cartService: CartService
   ) {
@@ -26,8 +29,8 @@ export class AppComponent implements OnInit, DoCheck {
   }
   ngDoCheck(): void {
     this.showName()
-
-   this.caddySize= this.cartService.caddylenght()
+    this.linkAdmin()
+    this.caddySize = this.cartService.caddylenght()
   }
 
   showName() {
@@ -38,12 +41,18 @@ export class AppComponent implements OnInit, DoCheck {
       this.logout = true
     }
   }
+  linkAdmin() {
+    this.role = this.customerService.getCustomerFromStorage().role
+    if (this.role === "admin") {
+      this.admin = true
+    }
+  }
   disconnect() {
     this.customerService.removeCustomerFromStorage()
     this.display = false
     this.loggin = true
     this.logout = false
-
+    this.admin = false
   }
 
 }

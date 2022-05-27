@@ -4,7 +4,7 @@ export class Training {
     name: string;
     description: string;
     price: number;
-    quantity: number
+    quantity:number
     imgURL: string
 
     constructor(id: number, name: string, description: string, price: number, quantity: number, imgURL: string) {

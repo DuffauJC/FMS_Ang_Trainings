@@ -11,11 +11,9 @@ import { CartService } from '../../services/cart.service';
 
 export class TrainingsComponent implements OnInit, DoCheck {
   listTrainings: Training[] | undefined
-  display = false
   error = null
 
   constructor(private cartService: CartService,
-    private router: Router,
     private trainingsService: TrainingsService) { }
 
   ngOnInit(): void {
@@ -49,7 +47,7 @@ export class TrainingsComponent implements OnInit, DoCheck {
     cartButtons.forEach(button => {
      setTimeout(() => {
         button.classList.remove('clicked') 
-      },1500);
+      },3000);
      
     })
   }

@@ -13,6 +13,9 @@
       <a *ngIf="loggin" class="nav-link" routerLink="/login">Se connecter.</a>
       <a *ngIf="logout" class="nav-link" (click)="disconnect()">Se déconnecter.</a>
     </li>
+     <li class="nav-item d-flex">
+       <a *ngIf="admin" class="nav-link" id="linkAdmin" routerLink="/admin">ADMIN</a>
+     </li>
   </ul>
   <div *ngIf="display" class="m-auto col-md-3 welcome">
     Bienvenue {{name}} <img src="../assets/img/avatar.png">

@@ -1,0 +1,34 @@
+<h1>Ajout formation</h1>
+<div class="container">
+  <div class="col-md-3">
+    <form #f="ngForm" (ngSubmit)="onSaveTraining(f)">
+      <div class="form-group">
+        <label class="control-label">Nom : </label>
+        <input type="text" name="name" required class="form-control" [(ngModel)]="name">
+      </div>
+      <div class="form-group">
+        <label class="control-label">Description : </label>
+        <input type="text" name="description" class="form-control" [(ngModel)]="description">
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Price : </label>
+        <input type="text" name="price" class="form-control" [(ngModel)]="price">
+
+        <div class="form-group">
+          <label class="control-label">Quantité :</label>
+          <input [defaultValue]="1" type="text" name="quantity" class="form-control" [(ngModel)]="quantity">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Img url : </label>
+          <input [defaultValue]="defaultImgUrl" type="text" name="imgURL" required class="form-control"
+            [(ngModel)]="imgURL">
+        </div>
+        <button type="submit" [disabled]="!f.valid" class="btn btn-primary"> Next</button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="display" class=" alert alert-success mt-5 col-md-3">
+    Formation enregistrée.
+  </div>
+</div>

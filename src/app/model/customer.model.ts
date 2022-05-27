@@ -6,7 +6,7 @@ export class Customer {
     phoneNumber: string
     email: string
     password: string
-    role = "customer"
+    role : string
 
     constructor(name: string, firstName: string, address: string, phoneNumber: string, email: string, password: string, role: string) {
 
@@ -16,7 +16,7 @@ export class Customer {
         this.phoneNumber = phoneNumber
         this.email = email
         this.password = password
-        role = this.role
+        this.role = role
     }
 
 }

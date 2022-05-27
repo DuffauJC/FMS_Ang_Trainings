@@ -12,7 +12,9 @@ import { CustomerComponent } from './components/customer/customer.component'
 import { NotFoundComponent } from './components/notFound/notFound.component';
 import { OrderComponent } from './components/order/order.component';
 import { LoginComponent } from './components/login/login.component';
-
+import { HomeAdminComponent } from './admin/homeAdmin.component';
+import { AddTrainingComponent } from './admin/addTraining/addTraining.component';
+import { ListTrainingComponent } from './admin/listTraining/listTraining.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,10 @@ import { LoginComponent } from './components/login/login.component';
     CustomerComponent,
     NotFoundComponent,
     OrderComponent,
-    LoginComponent
+    LoginComponent,
+    HomeAdminComponent,
+    AddTrainingComponent,
+    ListTrainingComponent
   ],
   imports: [
     BrowserModule,

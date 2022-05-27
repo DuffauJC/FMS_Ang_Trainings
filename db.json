@@ -6,7 +6,7 @@
       "description": "Formation Java SE 8 sur 5 jours",
       "price": 1500,
       "quantity": 1,
-      "imgURL":"assets/img/java.png"
+      "imgURL": "assets/img/java.png"
     },
     {
       "id": 2,
@@ -63,6 +63,14 @@
       "price": 1600,
       "quantity": 1,
       "imgURL": "assets/img/github.png"
+    },
+    {
+      "name": "C ++",
+      "description": "Formation C ++ sur 5 jours",
+      "price": 1700,
+      "quantity": 1,
+      "imgURL": "assets/img/c-.png",
+      "id": 9
     }
   ],
   "customers": [
@@ -114,6 +122,16 @@
       "phoneNumber": "0412",
       "password": "45aqw",
       "id": 5
+    },
+    {
+      "name": "Jones",
+      "firstName": "Indiana",
+      "address": "457 av",
+      "email": "jones@yahoo.com",
+      "phoneNumber": "47852",
+      "password": "qw456",
+      "role": "customer",
+      "id": 6
     }
   ]
 }

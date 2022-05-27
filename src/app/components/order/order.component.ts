@@ -10,6 +10,7 @@ import { CustomerService } from 'src/app/services/authentification.service';
 export class OrderComponent implements OnInit, DoCheck {
   dateOrder: Date = new Date();
   problemOrder = false
+  
   constructor(public cartService: CartService,
     private router: Router,
     public customerService: CustomerService) { }
@@ -35,9 +36,7 @@ export class OrderComponent implements OnInit, DoCheck {
         this.problemOrder = false
         this.router.navigateByUrl('login')
       }, 1500)
-    } else {
-      //this.router.navigateByUrl('order')
-    }
+    } 
 
   }
 }

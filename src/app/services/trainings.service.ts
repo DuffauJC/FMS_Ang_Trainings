@@ -11,4 +11,20 @@ export class TrainingsService {
     public getTrainings() {
         return this.http.get<Training[]>(environment.host+"/trainings")
     }
+    public postTraining(data:any) {
+        // console.log(training);
+     
+        let train = {
+            name: data.name,
+            description: data.description,
+            price: data.price,
+            quantity: data.quantity,
+            imgURL: data.imgURL,
+          
+        }
+        this.http.post<any>(environment.host + "/trainings", train)
+        //     .subscribe(response => {
+        //     console.log(response)
+        // })
+    }
 }

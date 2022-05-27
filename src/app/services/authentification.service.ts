@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Customer } from '../model/customer.model';
 
+
 @Injectable({ providedIn: 'root' })
 
 export class CustomerService {
@@ -14,16 +15,16 @@ export class CustomerService {
     }
 
     // save customer in bdd
-    public postCustomer(customer: Customer) {
+    public postCustomer(data: any) {
         // console.log(customer);
         let cust = {
-            name: customer.name,
-            firstName: customer.firstName,
-            address: customer.address,
-            email: customer.email,
-            phoneNumber: customer.phoneNumber,
-            password: customer.password,
-            role: customer.role
+            name: data.name,
+            firstName: data.firstName,
+            address: data.address,
+            email: data.email,
+            phoneNumber: data.phoneNumber,
+            password:data.password,
+            role: data.role
         }
         this.http.post<any>(environment.host + "/customers", cust)
         //     .subscribe(response => {

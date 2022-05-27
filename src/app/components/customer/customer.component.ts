@@ -3,7 +3,7 @@ import { Customer } from '../../model/customer.model';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/authentification.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
     selector: 'app-customer',
@@ -11,22 +11,37 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 
 export class CustomerComponent implements OnInit, DoCheck {
-    //myForm: FormGroup
-    customer: Customer | undefined
+
+    data = {
+        name: "",
+        firstName: "",
+        address: "",
+        email: "",
+        phoneNumber: "",
+        password: "",
+        role: ""
+    }
+    name: string
+    firstName: string
+    address: string
+    email: string
+    phoneNumber: string
+    password: string
+    role: string
+    
     display = false
 
     constructor(public cartService: CartService,
         private router: Router,
         private customerService: CustomerService) {
+        this.name=""
+        this.firstName=""
+        this.address=""
+        this.email=""
+        this.phoneNumber=""
+        this.password=""
+        this.role="customer"
 
-        // let customer = this.cartService.getCustomer()
-        // this.myForm = new FormGroup({
-        //     name: new FormControl(customer.name),
-        //     firstName: new FormControl(customer.firstName),
-        //     address: new FormControl(customer.address),
-        //     phoneNumber: new FormControl(customer.phoneNumber),
-        //     email: new FormControl(customer.email),
-        // })
     }
 
     ngDoCheck(): void {
@@ -35,19 +50,22 @@ export class CustomerComponent implements OnInit, DoCheck {
 
     }
 
-    onSaveCustomer(customer: Customer) {
-        this.display = true
+    onSaveCustomer(form: NgForm) {
 
-        this.customerService.postCustomer(customer)
+        this.display = true
+        this.data.name = form.value.name
+        this.data.firstName = form.value.firstName
+        this.data.address = form.value.address
+        this.data.email=form.value.email
+        this.data.phoneNumber = form.value.phoneNumber
+        this.data.password = form.value.password
+        this.data.role=this.role
+
+        this.customerService.postCustomer(this.data)
         setInterval(() => {
             this.display = false
             this.router.navigateByUrl('home')
         }, 1500)
-
-        // if (form.valid) {
-
-        // }
-
 
     }
 }

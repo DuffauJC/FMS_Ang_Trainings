@@ -1,22 +1,49 @@
 <div class="container">
-  <div class="col-md-3">
-    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
-      <div class="mb-3">
-        <label class="form-label">Email :</label>
-        <input type="text" class="form-control" aria-describedby="emailHelp" name="email" [(ngModel)]="email">
-        <div id="emailHelp" class="form-text">Ne partagez votre email avec personne.</div>
+  <div class="login-container">
+    <div class="loginbox bg-white" id="logCard">
+      <div class="loginbox-title">CONNECTION</div>
+      <div class="loginbox-social">
+        <div class="social-title ">Connection depuis un réseau social.</div>
+        <div class="social-buttons">
+          <a href="" class="button-facebook">
+            <i class="social-icon fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="" class="button-twitter">
+            <i class="social-icon fa-brands fa-twitter"></i>
+          </a>
+          <a href="" class="button-google">
+            <i class="social-icon fa-brands fa-google-plus-g"></i>
+          </a>
+        </div>
       </div>
-      <div class="mb-3">
-        <label class="form-label">Mot de passe :</label>
-        <input type="password" class="form-control" name="password" [(ngModel)]="password">
+      <div class="loginbox-or">
+        <div class="or-line"></div>
+        <div class="or">OR</div>
       </div>
-      <button type="submit" class="btn btn-primary">Envoyer</button>
-    </form>
+      <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+        <div class="loginbox-textbox">
+          <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="email">
+          <div id="emailHelp" class="form-text">Ne partagez votre email avec personne.</div>
+        </div>
+        <div class="loginbox-textbox">
+          <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="password">
+        </div>
+        <div class="loginbox-submit">
+          <button type="submit" class="btn btn-primary">Connection</button>
+        </div>
+      </form>
+      <div class="loginbox-signup">
+        <a routerLink="/register">Création de compte</a>
+      </div>
+    </div>
   </div>
+
   <div *ngIf="display" class=" alert alert-success mt-5 col-md-3">
     Utilisateur connecté.
   </div>
-   <div *ngIf="problemLogin" class=" alert alert-danger mt-5 col-md-3">
-     Vérifiez vos identifiants ou créez un compte.
-   </div>
+
+  <div *ngIf="problemLogin" class=" alert alert-danger mt-5 col-md-3">
+    Vérifiez vos identifiants ou créez un compte.
+  </div>
+
 </div>

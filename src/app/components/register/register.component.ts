@@ -1,16 +1,15 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { Customer } from '../../model/customer.model';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/authentification.service';
-import { FormsModule, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
-    selector: 'app-customer',
-    templateUrl: 'customer.component.html'
+    selector: 'app-register',
+    templateUrl: 'register.component.html'
 })
 
-export class CustomerComponent implements OnInit, DoCheck {
+export class RegisterComponent implements OnInit, DoCheck {
 
     data = {
         name: "",
@@ -51,7 +50,7 @@ export class CustomerComponent implements OnInit, DoCheck {
     }
 
     onSaveCustomer(form: NgForm) {
-
+console.log(form.value)
         this.display = true
         this.data.name = form.value.name
         this.data.firstName = form.value.firstName
@@ -62,7 +61,7 @@ export class CustomerComponent implements OnInit, DoCheck {
         this.data.role=this.role
 
         this.customerService.postCustomer(this.data)
-        setInterval(() => {
+        setTimeout(() => {
             this.display = false
             this.router.navigateByUrl('home')
         }, 1500)

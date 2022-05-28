@@ -140,6 +140,16 @@
       "password": "qw456",
       "role": "customer",
       "id": 6
+    },
+    {
+      "name": "Bond",
+      "firstName": "James",
+      "address": "mi-6",
+      "email": "bond@free.fr",
+      "phoneNumber": "007",
+      "password": "007007",
+      "role": "customer",
+      "id": 7
     }
   ]
 }

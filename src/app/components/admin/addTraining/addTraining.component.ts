@@ -33,14 +33,16 @@ export class AddTrainingComponent implements OnInit,DoCheck{
         this.imgURL="assets/img/unknown.png"
          }
 
-    ngOnInit() { }
+    ngOnInit() {
+        
+     }
 
     ngDoCheck() {
         
     }
     onSaveTraining(form: NgForm) {
         
-       // console.log(form.value)
+       console.log(form.value)
         
         this.data.name = form.value.name
         this.data.description = form.value.description
@@ -50,10 +52,22 @@ export class AddTrainingComponent implements OnInit,DoCheck{
         
         this.display = true
 
-        this.trainingsService.postTraining(this.data)
+        let btn = document.getElementById('modal-btn')
+        if (btn != null) {
+            btn.addEventListener("click", () => {
+                if (btn != null) {
+                    btn.classList.toggle("is_active")
+                }
+            });
+        }
+
+        //this.trainingsService.postTraining(this.data)
         setTimeout(() => {
             this.display = false
             document.querySelector('form')?.reset()
+            if (btn != null) {
+                btn.classList.toggle("is_active")
+            }
         }, 1500)
     }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { CustomerService } from '../services/authentification.service';
+import { CustomerService } from '../../services/authentification.service';
 import { Router } from '@angular/router';
 
 @Component({

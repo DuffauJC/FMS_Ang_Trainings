@@ -11,16 +11,15 @@ export class CustomerService {
     error = null
     ok=true
     constructor(private http: HttpClient) {
-        //this.customer = new Customer("", "","","","","","")
     }
 
     // save customer in bdd
     public postCustomer(data: any) {
-        // console.log(data);
+         //console.log(data);
         this.http.post<any>(environment.host + "/customers", data)
-        //     .subscribe(response => {
-        //     console.log(response)
-        // })
+            .subscribe(response => {
+            console.log(response)
+        })
     }
 
     // login verification

@@ -1,6 +1,5 @@
 import { Component, OnInit,DoCheck } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Training } from 'src/app/model/training.model';
 import { TrainingsService } from 'src/app/services/trainings.service';
 
 

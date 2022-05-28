@@ -16,23 +16,14 @@ export class CustomerService {
 
     // save customer in bdd
     public postCustomer(data: any) {
-        // console.log(customer);
-        let cust = {
-            name: data.name,
-            firstName: data.firstName,
-            address: data.address,
-            email: data.email,
-            phoneNumber: data.phoneNumber,
-            password:data.password,
-            role: data.role
-        }
-        this.http.post<any>(environment.host + "/customers", cust)
+        // console.log(data);
+        this.http.post<any>(environment.host + "/customers", data)
         //     .subscribe(response => {
         //     console.log(response)
         // })
     }
 
-    // login vuerification
+    // login verification
     veriFyLogin(data: any) {
        // console.log(data)
         

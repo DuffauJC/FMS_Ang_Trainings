@@ -2,9 +2,9 @@
   "trainings": [
     {
       "id": 1,
-      "name": "Java",
+      "name": "Java-Bien",
       "description": "Formation Java SE 8 sur 5 jours",
-      "price": 1500,
+      "price": "2800",
       "quantity": 1,
       "imgURL": "assets/img/java.png"
     },
@@ -66,11 +66,19 @@
     },
     {
       "name": "C ++",
-      "description": "Formation C ++ sur 15 ans",
-      "price": "250000000",
+      "description": "Formation sur 25 ans conceptuellement...",
+      "price": "9999.99",
       "quantity": 1,
       "imgURL": "assets/img/c-.png",
       "id": 9
+    },
+    {
+      "name": "Javascript",
+      "description": "Formation indispensable sur une vie.",
+      "price": "29.99-",
+      "quantity": 1,
+      "imgURL": "assets/img/js.png",
+      "id": 10
     }
   ],
   "customers": [

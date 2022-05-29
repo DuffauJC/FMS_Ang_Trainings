@@ -90,34 +90,15 @@
     }
   ],
   "customers": [
+  
     {
-      "id": 1,
-      "name": "Rambo",
-      "firstname": "Jhon",
-      "address": "Nevada",
-      "phoneNumber": "0604",
-      "email": "rambo@usa.com",
-      "password": "25ty47",
-      "role": "customer"
-    },
-    {
-      "id": 2,
-      "name": "Prost",
-      "firstname": "Alain",
-      "address": "17, rue du Lampion",
-      "phoneNumber": "0605",
-      "email": "alainprost@free.fr",
-      "password": "25ty48",
-      "role": "customer"
-    },
-    {
-      "name": "duf",
-      "firstName": "jc",
+      "name": "Duffau",
+      "firstName": "Jean-Charles",
       "address": "887 rte",
       "phoneNumber": "0605",
       "email": "jcd@fr",
-      "id": 3,
-      "password": "25ty50",
+      "id": 1,
+      "password": "MjV0eTUw",
       "role": "admin"
     },
     {
@@ -125,19 +106,10 @@
       "email": "rabbit@free.fr",
       "firstName": "Roger",
       "name": "Rabbit",
-      "password": "aq4588",
+      "password": "YXE0NTg4",
       "phoneNumber": "4578",
       "role": "customer",
-      "id": 4
-    },
-    {
-      "name": "lapin",
-      "firstName": "rose",
-      "address": "47rte",
-      "email": "lapin@gmail.com",
-      "phoneNumber": "0412",
-      "password": "45aqw",
-      "id": 5
+      "id": 2
     },
     {
       "name": "Jones",
@@ -145,19 +117,9 @@
       "address": "457 av",
       "email": "jones@yahoo.com",
       "phoneNumber": "47852",
-      "password": "qw456",
+      "password": "cXc0NTY=",
       "role": "customer",
-      "id": 6
-    },
-    {
-      "name": "Bond",
-      "firstName": "James",
-      "address": "mi-6",
-      "email": "bond@free.fr",
-      "phoneNumber": "007",
-      "password": "007007",
-      "role": "customer",
-      "id": 7
+      "id": 3
     }
   ]
 }

@@ -59,8 +59,11 @@ export class RegisterComponent implements OnInit, DoCheck {
         this.data.address = form.value.address
         this.data.email = form.value.email
         this.data.phoneNumber = form.value.phoneNumber
-        this.data.password =  form.value.password
         this.data.role = this.role
+        
+        // encode password
+        this.data.password = window.btoa(form.value.password);
+       
 
         this.customerService.postCustomer(this.data)
         setTimeout(() => {

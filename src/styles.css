@@ -58,6 +58,7 @@ li {
   font-size: 30px;
   font-weight: bolder;
   font-style: italic;
+  margin-left: 100px;
 }
 
 #linkAdmin {
@@ -66,15 +67,6 @@ li {
   text-decoration: underline;
 }
 
-table,
-tr,
-td {
-  border: none;
-}
-
-table th {
-  font-size: 20px;
-}
 
 .delete i {
   color: red;
@@ -383,6 +375,12 @@ table th {
   margin: 0
 }
 
+.shopping-cart>table>thead,
+.shopping-cart>table>tbody
+{
+  border-bottom: coral;
+}
+
 .shopping-cart>table>thead>tr>th,
 .shopping-cart>table>thead>tr>td,
 .shopping-cart>table>tbody>tr>th,
@@ -511,7 +509,7 @@ table th {
   display: table;
   width: 100%;
   padding: 10px 0;
-  border-top: 1px solid #e1e7ec
+  border-top: 1px solid coral
 }
 
 .shopping-cart-footer>.column {
@@ -1269,7 +1267,11 @@ p {
 }
 
 /*********** order ***********/
-.customerNotes p,
+#customerNotes p,
 .payMethod p {
   color: black;
+}
+#orderCard,#customerNotes,#shippingInfo,#payInfo{
+  border: 1px solid coral;
+   box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
 }

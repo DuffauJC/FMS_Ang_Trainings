@@ -29,8 +29,8 @@ export class CustomerService {
         this.getCustomer(data.email).subscribe(response => {
             //console.log(response[0])
 
-            // if existant user mail in response
-            if (response[0].email === data.email && response[0].password === data.password) {
+            // if existant user mail in response && decode password verif
+            if (response[0].email === data.email && window.atob(response[0].password) === data.password) {
                 this.setCustomerInStorage({
                     email: response[0].email,
                     name: response[0].name,

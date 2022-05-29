@@ -15,20 +15,20 @@
         <form #f="ngForm" (ngSubmit)="onSaveTraining(f)">
           <div class="loginbox-textbox">
             <label class="control-label">Nom : </label>
-            <input type="text" name="name" class="form-control" placeholder="Nom" [(ngModel)]="name">
+            <input type="text" name="name" class="form-control" placeholder="Nom" [(ngModel)]="name" required>
           </div>
           <div class="loginbox-textbox">
             <label class="control-label">Description : </label>
             <input type="text" name="description" class="form-control" placeholder="Description"
-              [(ngModel)]="description">
+              [(ngModel)]="description" required>
           </div>
           <div class="loginbox-textbox">
             <label class="control-label">Price : </label>
-            <input type="text" name="price" class="form-control" placeholder="prix" [(ngModel)]="price">
+            <input type="text" name="price" class="form-control" placeholder="prix" [(ngModel)]="price" required>
           </div>
           <div class="loginbox-textbox">
             <label class="control-label">Img url : </label>
-            <input type="text" name="imgURL" class="form-control" placeholder="imgURL" [(ngModel)]="imgURL">
+            <input type="text" name="imgURL" class="form-control" placeholder="imgURL" [(ngModel)]="imgURL" required>
           </div>
           <div class="loginbox-submit">
             <button type="submit" [disabled]="!f.valid" class="btn btn-success btn-block" id="modal-btn">
@@ -41,6 +41,9 @@
                 </svg>
               </div>
             </button>
+            <div *ngIf="display" class=" alert alert-success col-md-12">
+              Formation enregistrée.
+            </div>
           </div>
         </form>
       </div>
@@ -48,35 +51,5 @@
   </div>
 
 
-  <div *ngIf="display" class=" alert alert-success mt-5 col-md-3">
-    Formation enregistrée.
-  </div>
+
 </div>
-
-<!-- <div class="col-md-3">
-    <form #f="ngForm" (ngSubmit)="onSaveTraining(f)">
-      <div class="form-group">
-        <label class="control-label">Nom : </label>
-        <input type="text" name="name" required class="form-control" [(ngModel)]="name">
-      </div>
-      <div class="form-group">
-        <label class="control-label">Description : </label>
-        <input type="text" name="description" class="form-control" [(ngModel)]="description">
-      </div>
-
-      <div class="form-group">
-        <label class="control-label">Price : </label>
-        <input type="text" name="price" class="form-control" [(ngModel)]="price">
-
-        <div class="form-group">
-          <label class="control-label">Quantité :</label>
-          <input type="text" name="quantity" class="form-control" [(ngModel)]="quantity">
-        </div>
-        <div class="form-group">
-          <label class="control-label">Img url : </label>
-          <input type="text" name="imgURL" required class="form-control" [(ngModel)]="imgURL">
-        </div>
-        <button type="submit" [disabled]="!f.valid" class="btn btn-primary"> Next</button>
-      </div>
-    </form>
-  </div> -->

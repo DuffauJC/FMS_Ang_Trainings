@@ -14,23 +14,22 @@ export class TrainingsService {
     public postTraining(data: any) {
         //console.log(data);
         this.http.post<any>(environment.host + "/trainings", data)
-            // .subscribe(response => {
-            //     console.log(response)
-            // })
+            .subscribe(response => {
+                console.log(response)
+            })
     }
     public delItem(training: Training) {
-        console.log(training)
+        //console.log(training)
         this.http.delete(environment.host + "/trainings/" + training.id)
-        //     .subscribe(response => {
-        //     console.log(response)
-        // })
+            .subscribe(response => {
+            console.log(response)
+        })
     }
     public updateTraining(data:any) {
         //console.log(data);
-     
         this.http.put<any>(environment.host + "/trainings/"+data.id, data)
-            // .subscribe(response => {
-            //     console.log(response)
-            // })
+            .subscribe(response => {
+                console.log(response)
+            })
     }
 }

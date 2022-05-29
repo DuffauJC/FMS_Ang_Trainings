@@ -74,8 +74,8 @@
     },
     {
       "name": "Javascript",
-      "description": "Formation indispensable sur une vie.",
-      "price": "29.99-",
+      "description": "L'histoire d'une vie",
+      "price": "500",
       "quantity": 1,
       "imgURL": "assets/img/js.png",
       "id": 10

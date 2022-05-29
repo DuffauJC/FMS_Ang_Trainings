@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         this.data.password = form.value.password
         
         //console.log(this.data)
-      
+        document.getElementById('modal-btn')?.classList.toggle("is_active")
         let ok = this.customerService.veriFyLogin(this.data)
         if (ok) {
              this.display = true 

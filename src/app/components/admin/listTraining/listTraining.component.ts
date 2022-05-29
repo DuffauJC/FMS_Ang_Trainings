@@ -1,5 +1,6 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Training } from 'src/app/model/training.model';
 import { CartService } from 'src/app/services/cart.service';
 import { TrainingsService } from 'src/app/services/trainings.service';
@@ -9,7 +10,7 @@ import { TrainingsService } from 'src/app/services/trainings.service';
     templateUrl: 'listTraining.component.html'
 })
 
-export class ListTrainingComponent implements OnInit, DoCheck {
+export class ListTrainingComponent implements OnInit {
 
     listTrainings: Training[] | undefined
     error = null
@@ -35,6 +36,7 @@ export class ListTrainingComponent implements OnInit, DoCheck {
 
     constructor(private cartService: CartService,
         private trainingsService: TrainingsService,
+        private router: Router
     ) {
         this.id = 0
         this.name = ""
@@ -46,8 +48,7 @@ export class ListTrainingComponent implements OnInit, DoCheck {
     ngOnInit() {
         this.getAllTrainings()
     }
-    ngDoCheck() {
-    }
+   
 
     getAllTrainings() {
         this.trainingsService.getTrainings().subscribe({
@@ -59,10 +60,11 @@ export class ListTrainingComponent implements OnInit, DoCheck {
     }
     delItem(training: Training) {
         this.trainingsService.delItem(training)
-        let item = document.getElementById('item-' + training.id)
-        if (item) {
-            item.style.display = "none"
-        }
+
+        setTimeout(() => {
+            this.ngOnInit()
+        }, 500)
+
     }
 
     openPopup(training: Training) {
@@ -75,15 +77,6 @@ export class ListTrainingComponent implements OnInit, DoCheck {
         this.price = training.price
         this.quantity = training.quantity
         this.imgURL = training.imgURL
-
-        let btn = document.getElementById('modal-btn')
-        if (btn != null) {
-            btn.addEventListener("click", () => {
-                if (btn != null) {
-                    btn.classList.toggle("is_active")
-                }
-            });
-        }
     }
     closePopup() {
         this.displayStyle = "none";
@@ -100,15 +93,18 @@ export class ListTrainingComponent implements OnInit, DoCheck {
         this.data.quantity = this.quantity
         this.data.imgURL = form.value.imgURL
 
-        this.display = true
+        document.getElementById('modal-btn')?.classList.toggle('is_active')
 
         this.trainingsService.updateTraining(this.data)
+        this.display = true
+        
         setTimeout(() => {
             this.display = false
             this.displayStyle = "none";
             this.displayBlur = "blur(0)"
             document.getElementById('modal-btn')?.classList.toggle('is_active')
-        }, 1500)
+            this.ngOnInit()
+        }, 500)
     }
 
 

@@ -39,14 +39,16 @@ export class LoginComponent implements OnInit {
         document.getElementById('modal-btn')?.classList.toggle("is_active")
         let ok = this.customerService.veriFyLogin(this.data)
         if (ok) {
-             this.display = true 
+            this.display = true 
+            setTimeout(() => {
+                this.display = false
+                this.router.navigateByUrl('home')
+            }, 1500)
         } else {
             this.problemLogin=true
         }
         setTimeout(() => {
-            this.display = false
             this.problemLogin=false
-            this.router.navigateByUrl('home')
         }, 1500)
     }
 

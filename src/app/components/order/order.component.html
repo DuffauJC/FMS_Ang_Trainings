@@ -26,7 +26,7 @@
                       <img src="{{p.imgURL}}" alt="" width="35" class="img-fluid">
                     </div>
                     <div class="flex-lg-grow-1 ms-3">
-                      <h6 class="small mb-0"><a href="#" class="text-reset">{{p.name}}</a></h6>
+                      <h6 class="small mb-0"><a class="text-reset">{{p.name}}</a></h6>
                       <span class="small">{{p.description}}</span>
                     </div>
                   </div>
@@ -56,7 +56,7 @@
       <div class="card mb-4">
         <div class="card-body">
           <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 payMethod">
               <h3 class="h6">Payment Method</h3>
               <p>Visa -1234 <br>
                 Total: {{cartService.getTotal() | number:'0.2'}} € </p>
@@ -79,11 +79,10 @@
     </div>
     <div class="col-lg-4">
       <!-- Customer Notes -->
-      <div class="card mb-4">
+      <div class="card mb-4 customerNotes">
         <div class="card-body">
           <h3 class="h6">Customer Notes</h3>
-          <p>Sed enim, faucibus litora velit vestibulum habitasse. Cras lobortis cum sem aliquet mauris rutrum.
-            Sollicitudin. Morbi, sem tellus vestibulum porttitor.</p>
+          <p>En cas d'absence, livrez au relais colis le plus proche.</p>
         </div>
       </div>
       <div class="card mb-4">
@@ -91,7 +90,7 @@
         <div class="card-body">
           <h3 class="h6">Shipping Information</h3>
           <strong>FedEx</strong>
-          <span><a href="#" class="text-decoration-underline" target="_blank">FF1234567890</a> <i
+          <span><a class="text-decoration-underline" target="_blank">FF1234567890</a> <i
               class="bi bi-box-arrow-up-right"></i> </span>
           <hr>
           <h3 class="h6">Address</h3>
@@ -109,5 +108,18 @@
   </div>
   <div *ngIf="problemOrder" class=" alert alert-danger mt-5 col-md-3">
     Vous avec été déconnécté,reconnectez-vous.
+  </div>
+
+
+  <div id="id01" [ngStyle]="{'display':displayStyle}" id="modal-confirm">
+    <span class="close" title="Close Modal" (click)="closePopup()">&times;</span>
+    <div class="modal-container" id="modal-confirm-container">
+      <h1>Comfirmation de commande</h1>
+      <p>Aujourd'hui c'est gratuit, merci de votre visite :)</p>
+      <div class="clearfix">
+        <button type="button" class="cancelbtn" (click)="closePopup()">Annuler</button>
+        <button type="button" class="confirmbtn" (click)="confirmOrder()">Confirmer</button>
+      </div>
+    </div>
   </div>
 </div>

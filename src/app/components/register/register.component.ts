@@ -27,19 +27,19 @@ export class RegisterComponent implements OnInit, DoCheck {
     phoneNumber: string
     password: string
     role: string
-    
+
     display = false
 
     constructor(public cartService: CartService,
         private router: Router,
         private customerService: CustomerService) {
-        this.name=""
-        this.firstName=""
-        this.address=""
-        this.email=""
-        this.phoneNumber=""
-        this.password=""
-        this.role="customer"
+        this.name = ""
+        this.firstName = ""
+        this.address = ""
+        this.email = ""
+        this.phoneNumber = ""
+        this.password = ""
+        this.role = "customer"
 
     }
 
@@ -50,15 +50,17 @@ export class RegisterComponent implements OnInit, DoCheck {
     }
 
     onSaveCustomer(form: NgForm) {
-console.log(form.value)
+        //console.log(form.value)
+
         this.display = true
+
         this.data.name = form.value.name
         this.data.firstName = form.value.firstName
         this.data.address = form.value.address
-        this.data.email=form.value.email
+        this.data.email = form.value.email
         this.data.phoneNumber = form.value.phoneNumber
-        this.data.password = form.value.password
-        this.data.role=this.role
+        this.data.password =  form.value.password
+        this.data.role = this.role
 
         this.customerService.postCustomer(this.data)
         setTimeout(() => {

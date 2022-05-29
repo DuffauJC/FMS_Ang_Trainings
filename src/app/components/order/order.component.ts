@@ -10,7 +10,7 @@ import { CustomerService } from 'src/app/services/authentification.service';
 export class OrderComponent implements OnInit, DoCheck {
   dateOrder: Date = new Date();
   problemOrder = false
-  
+  displayStyle = "none";
   constructor(public cartService: CartService,
     private router: Router,
     public customerService: CustomerService) { }
@@ -22,10 +22,17 @@ export class OrderComponent implements OnInit, DoCheck {
     this.verifySession()
   }
   onOrder() {
-    if (confirm("Aujourd'hui c'est gratuit, merci de votre visite :)")) {
-      this.cartService.clear();
-      this.router.navigateByUrl('');
-    }
+    this.displayStyle = "block";
+
+  }
+  confirmOrder() {
+    this.displayStyle = "none";
+    this.cartService.clear();
+    this.router.navigateByUrl('');
+  }
+  closePopup() {
+    this.displayStyle = "none";
+
   }
   verifySession() {
     let customer = this.customerService.getCustomerFromStorage()

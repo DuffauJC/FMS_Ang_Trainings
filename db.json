@@ -79,6 +79,14 @@
       "quantity": 1,
       "imgURL": "assets/img/js.png",
       "id": 10
+    },
+    {
+      "name": "CSS",
+      "description": "Découverte",
+      "price": "1100",
+      "quantity": 1,
+      "imgURL": "assets/img/css-3.png",
+      "id": 11
     }
   ],
   "customers": [

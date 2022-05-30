@@ -1,6 +1,7 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit,DoCheck} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CustomerService } from 'src/app/services/authentification.service';
 import { TrainingsService } from 'src/app/services/trainings.service';
 
 
@@ -9,9 +10,9 @@ import { TrainingsService } from 'src/app/services/trainings.service';
     templateUrl: 'addTraining.component.html'
 })
 
-export class AddTrainingComponent implements OnInit {
+export class AddTrainingComponent implements OnInit,DoCheck {
     display = false
-
+    problemAdmin = false
     data = {
         name: "",
         description: "",
@@ -26,7 +27,7 @@ export class AddTrainingComponent implements OnInit {
     imgURL: string
 
     constructor(private trainingsService: TrainingsService,
-        private router: Router
+        private router: Router, public customerService: CustomerService
     ) {
         this.name = ""
         this.description = ""
@@ -42,7 +43,20 @@ export class AddTrainingComponent implements OnInit {
         this.quantity = 1
         this.imgURL = "assets/img/unknown.png"
     }
-
+    ngDoCheck(): void {
+        this.verifySession()
+    }
+    verifySession() {
+        let customer = this.customerService.getCustomerFromStorage()
+        // console.log(customer)
+        if (customer.role != "admin") {
+            this.problemAdmin = true
+            setTimeout(() => {
+                this.problemAdmin = false
+                this.router.navigateByUrl('login')
+            }, 1500)
+        }
+    }
     onSaveTraining(form: NgForm) {
 
         //console.log(form.value)

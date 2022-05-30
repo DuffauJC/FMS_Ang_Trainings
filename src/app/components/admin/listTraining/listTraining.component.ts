@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Training } from 'src/app/model/training.model';
+import { CustomerService } from 'src/app/services/authentification.service';
 import { CartService } from 'src/app/services/cart.service';
 import { TrainingsService } from 'src/app/services/trainings.service';
 
@@ -10,14 +11,14 @@ import { TrainingsService } from 'src/app/services/trainings.service';
     templateUrl: 'listTraining.component.html'
 })
 
-export class ListTrainingComponent implements OnInit {
+export class ListTrainingComponent implements OnInit,DoCheck {
 
     listTrainings: Training[] | undefined
     error = null
     displayStyle = "none";
     displayBlur = "blur(0)"
     display = false
-
+    problemAdmin = false
     data = {
         id: 0,
         name: "",
@@ -36,7 +37,7 @@ export class ListTrainingComponent implements OnInit {
 
     constructor(private cartService: CartService,
         private trainingsService: TrainingsService,
-        private router: Router
+        private router: Router, public customerService: CustomerService
     ) {
         this.id = 0
         this.name = ""
@@ -48,7 +49,9 @@ export class ListTrainingComponent implements OnInit {
     ngOnInit() {
         this.getAllTrainings()
     }
-   
+   ngDoCheck(): void {
+       this.verifySession()
+   }
 
     getAllTrainings() {
         this.trainingsService.getTrainings().subscribe({
@@ -57,6 +60,17 @@ export class ListTrainingComponent implements OnInit {
             complete: () => this.error = null
 
         })
+    }
+    verifySession() {
+        let customer = this.customerService.getCustomerFromStorage()
+        // console.log(customer)
+        if (customer.role != "admin") {
+            this.problemAdmin = true
+            setTimeout(() => {
+                this.problemAdmin = false
+                this.router.navigateByUrl('login')
+            }, 1500)
+        }
     }
     delItem(training: Training) {
         this.trainingsService.delItem(training)

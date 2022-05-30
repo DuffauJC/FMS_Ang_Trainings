@@ -71,26 +71,9 @@
       "quantity": 1,
       "imgURL": "assets/img/c-.png",
       "id": 9
-    },
-    {
-      "name": "Javascript",
-      "description": "L'histoire d'une vie",
-      "price": "500",
-      "quantity": 1,
-      "imgURL": "assets/img/js.png",
-      "id": 10
-    },
-    {
-      "name": "CSS",
-      "description": "Découverte",
-      "price": "1100",
-      "quantity": 1,
-      "imgURL": "assets/img/css-3.png",
-      "id": 11
     }
   ],
   "customers": [
-  
     {
       "name": "Duffau",
       "firstName": "Jean-Charles",

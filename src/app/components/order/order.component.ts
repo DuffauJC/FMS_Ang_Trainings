@@ -1,7 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
-import { CustomerService } from 'src/app/services/authentification.service';
+import { AuthenticateService } from 'src/app/services/authentificate.service';
 
 @Component({
   selector: 'app-order',
@@ -13,7 +13,7 @@ export class OrderComponent implements OnInit, DoCheck {
   displayStyle = "none";
   constructor(public cartService: CartService,
     private router: Router,
-    public customerService: CustomerService) { }
+    public authenticateService: AuthenticateService) { }
 
   ngOnInit(): void {
 
@@ -35,7 +35,7 @@ export class OrderComponent implements OnInit, DoCheck {
 
   }
   verifySession() {
-    let customer = this.customerService.getCustomerFromStorage()
+    let customer = this.authenticateService.getCustomerFromStorage()
     // console.log(customer)
     if (customer.firstName === "unknown") {
       this.problemOrder = true

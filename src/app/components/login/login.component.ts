@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from '../../model/customer.model';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CustomerService } from 'src/app/services/authentification.service';
+import { AuthenticateService } from 'src/app/services/authentificate.service';
 
 @Component({
     selector: 'app-login',
@@ -10,46 +9,50 @@ import { CustomerService } from 'src/app/services/authentification.service';
 })
 
 export class LoginComponent implements OnInit {
-    customer: Customer | undefined
-    data={email: "",
-            password:""}
-
-    email: string
-    password: string
+    ngForm: FormGroup
+    data = {
+        email: "",
+        password: ""
+    }
     display = false
     problemLogin = false
 
-    constructor(private customerService: CustomerService,
-     private router: Router) {
-        this.email = ""
-        this.password = ""
+    constructor(private authenticateService: AuthenticateService,
+        private router: Router) {
+
+        this.ngForm = new FormGroup({
+            email: new FormControl(this.data.email),
+            password: new FormControl(this.data.password)
+        })
     }
 
     ngOnInit() {
 
     }
 
-    onLogin(form: NgForm): void {
+    onLogin(form: FormGroup): void {
         //console.log(form.value);
-        
-        this.data.email = form.value.email
-        this.data.password = form.value.password
-        
-        //console.log(this.data)
-        document.getElementById('modal-btn')?.classList.toggle("is_active")
-        let ok = this.customerService.veriFyLogin(this.data)
-        if (ok) {
-            this.display = true 
+        if (form.valid) {
+            this.data.email = form.value.email
+            this.data.password = form.value.password
+
+            //console.log(this.data)
+            document.getElementById('modal-btn')?.classList.toggle("is_active")
+            let ok = this.authenticateService.veriFyLogin(this.data)
+            if (ok) {
+                this.display = true
+                setTimeout(() => {
+                    this.display = false
+                    this.router.navigateByUrl('home')
+                }, 1500)
+            } else {
+                this.problemLogin = true
+            }
             setTimeout(() => {
-                this.display = false
-                this.router.navigateByUrl('home')
+                this.problemLogin = false
             }, 1500)
-        } else {
-            this.problemLogin=true
         }
-        setTimeout(() => {
-            this.problemLogin=false
-        }, 1500)
+
     }
 
 

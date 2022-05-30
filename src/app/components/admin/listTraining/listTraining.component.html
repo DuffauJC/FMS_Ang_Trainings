@@ -18,7 +18,8 @@
               <p class="price-container">
                 <span>{{training.price}} €</span>
               </p>
-              <a class="x-del" (click)="delItem(training)"><img src="../../../assets/img/x-button.png" alt="delete"></a>
+              <a class="x-del" (click)="delItem(training)"><img src="../../../assets/img/x-button.png"
+                  alt="delete"></a>
               <!-- Button trigger modal -->
               <a class="" (click)="openPopup(training)"><img class="x-edit" src="../../../assets/img/edit.png"
                   alt="edit"></a>
@@ -47,6 +48,7 @@
   </ng-template>
 
 </div>
+
 <!-- Modal -->
 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
   <div class="modal-dialog" role="document">
@@ -61,25 +63,25 @@
           <div class="loginbox bg-white">
             <div class="loginbox-social">
               <div class="social-title ">
-                <img src="{{imgURL}}" alt="194x228" class="img-responsive">
+                <img src="{{data.imgURL}}" alt="194x228" class="img-responsive">
               </div>
             </div>
-            <form #f="ngForm" (ngSubmit)="onUpdateTraining(f)">
+            <form [formGroup]="ngForm" (ngSubmit)="onUpdateTraining(ngForm)">
               <div class="loginbox-textbox">
-                <input type="text" name="name" class="form-control" placeholder="Nom" [(ngModel)]="name">
+                <input type="text" name="name" class="form-control" placeholder="Nom" formControlName="name">
               </div>
               <div class="loginbox-textbox">
                 <input type="text" name="description" class="form-control" placeholder="Description"
-                  [(ngModel)]="description">
+                  formControlName="description">
               </div>
               <div class="loginbox-textbox">
-                <input type="text" name="price" class="form-control" placeholder="prix" [(ngModel)]="price">
+                <input type="text" name="price" class="form-control" placeholder="prix" f formControlName="price">
               </div>
               <div class="loginbox-textbox">
-                <input type="text" name="imgURL" class="form-control" placeholder="imgURL" [(ngModel)]="imgURL">
+                <input type="text" name="imgURL" class="form-control" placeholder="imgURL" formControlName="imgURL">
               </div>
               <div class="loginbox-submit">
-                <button type="submit" [disabled]="!f.valid" class="btn btn-success btn-block" id="modal-btn">
+                <button type="submit" [disabled]="!ngForm.valid" class="btn btn-success btn-block" id="modal-btn">
                   <span>Submit</span>
                   <div class="success">
                     <svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 29.756 29.756"

@@ -7,29 +7,29 @@
       <div class="loginbox bg-white">
         <div class="loginbox-social">
           <div class="social-title ">
-            <img src="{{imgURL}}" alt="194x228" class="img-responsive">
+            <img src="{{data.imgURL}}" alt="194x228" class="img-responsive">
           </div>
         </div>
-        <form #f="ngForm" (ngSubmit)="onSaveTraining(f)">
+        <form [formGroup]="ngForm" (ngSubmit)="onSaveTraining(ngForm)">
           <div class="loginbox-textbox">
             <label class="control-label">Nom : </label>
-            <input type="text" name="name" class="form-control" placeholder="Nom" [(ngModel)]="name" required>
+            <input type="text" name="name" class="form-control" placeholder="Nom" formControlName="name" required>
           </div>
           <div class="loginbox-textbox">
             <label class="control-label">Description : </label>
             <input type="text" name="description" class="form-control" placeholder="Description"
-              [(ngModel)]="description" required>
+              formControlName="description" required>
           </div>
           <div class="loginbox-textbox">
             <label class="control-label">Price : </label>
-            <input type="text" name="price" class="form-control" placeholder="prix" [(ngModel)]="price" required>
+            <input type="text" name="price" class="form-control" placeholder="prix" formControlName="price" required>
           </div>
           <div class="loginbox-textbox">
             <label class="control-label">Img url : </label>
-            <input type="text" name="imgURL" class="form-control" placeholder="imgURL" [(ngModel)]="imgURL" required>
+            <input type="text" name="imgURL" class="form-control" placeholder="imgURL" formControlName="imgURL" required>
           </div>
           <div class="loginbox-submit">
-            <button type="submit" [disabled]="!f.valid" class="btn btn-success btn-block" id="modal-btn">
+            <button type="submit" [disabled]="!ngForm.valid" class="btn btn-success btn-block" id="modal-btn">
               <span>Submit</span>
               <div class="success">
                 <svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 29.756 29.756"

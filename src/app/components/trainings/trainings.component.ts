@@ -1,6 +1,5 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { Router } from '@angular/router';
-import { TrainingsService } from 'src/app/services/trainings.service';
+import { ApiService } from 'src/app/services/api.service';
 import { Training } from '../../model/training.model';
 import { CartService } from '../../services/cart.service';
 
@@ -14,7 +13,7 @@ export class TrainingsComponent implements OnInit, DoCheck {
   error = null
 
   constructor(private cartService: CartService,
-    private trainingsService: TrainingsService) { }
+    private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.getAllTrainings()
@@ -24,7 +23,7 @@ export class TrainingsComponent implements OnInit, DoCheck {
   }
 
   getAllTrainings() {
-    this.trainingsService.getTrainings().subscribe({
+    this.apiService.getTrainings().subscribe({
       next: (data) => this.listTrainings = data,
       error: (err) => this.error = err.message,
       complete: () => this.error = null

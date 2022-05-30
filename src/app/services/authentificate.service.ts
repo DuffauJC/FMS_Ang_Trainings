@@ -1,32 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { Customer } from '../model/customer.model';
-
+import { ApiService } from './api.service';
 
 @Injectable({ providedIn: 'root' })
 
-export class CustomerService {
+export class AuthenticateService {
 
     error = null
     ok=true
-    constructor(private http: HttpClient) {
+    constructor( private apiService: ApiService) {
     }
-
-    // save customer in bdd
-    public postCustomer(data: any) {
-         //console.log(data);
-        this.http.post<any>(environment.host + "/customers", data)
-            .subscribe(response => {
-            console.log(response)
-        })
-    }
-
     // login verification
     veriFyLogin(data: any) {
        // console.log(data)
         
-        this.getCustomer(data.email).subscribe(response => {
+        this.apiService.getCustomer(data.email).subscribe(response => {
             //console.log(response[0])
 
             // if existant user mail in response && decode password verif
@@ -53,16 +41,7 @@ export class CustomerService {
         }
 
     }
-    // get customer with mail param
-    public getCustomer(email: string) {
-        //console.log(email)
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append("email", email);
-        //console.log(queryParams)
-        return this.http.get<Customer[]>(environment.host + "/customers", { params: queryParams })
 
-
-    }
     // set customer in storage
     setCustomerInStorage(data: any) {
         localStorage.setItem('customer', JSON.stringify(data));

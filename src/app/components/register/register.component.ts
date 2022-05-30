@@ -1,16 +1,18 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
-import { CustomerService } from 'src/app/services/authentification.service';
-import { NgForm } from '@angular/forms';
+import { ApiService } from 'src/app/services/api.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-register',
     templateUrl: 'register.component.html'
 })
 
-export class RegisterComponent implements OnInit, DoCheck {
-
+export class RegisterComponent implements OnInit {
+    ngForm: FormGroup
+    display = false
+    error=""
     data = {
         name: "",
         firstName: "",
@@ -18,58 +20,57 @@ export class RegisterComponent implements OnInit, DoCheck {
         email: "",
         phoneNumber: "",
         password: "",
-        role: ""
+        role: "customer"
     }
-    name: string
-    firstName: string
-    address: string
-    email: string
-    phoneNumber: string
-    password: string
-    role: string
-
-    display = false
-
     constructor(public cartService: CartService,
         private router: Router,
-        private customerService: CustomerService) {
-        this.name = ""
-        this.firstName = ""
-        this.address = ""
-        this.email = ""
-        this.phoneNumber = ""
-        this.password = ""
-        this.role = "customer"
+        private apiService: ApiService) {
+
+
+        this.ngForm = new FormGroup({
+            name: new FormControl(this.data.name),
+            firstName: new FormControl(this.data.firstName),
+            address: new FormControl(this.data.address),
+            email: new FormControl(this.data.email),
+            phoneNumber: new FormControl(this.data.phoneNumber),
+            password: new FormControl(this.data.password),
+            role: new FormControl(this.data.role),
+        })
 
     }
 
-    ngDoCheck(): void {
-    }
     ngOnInit(): void {
 
     }
 
-    onSaveCustomer(form: NgForm) {
+    onSaveCustomer(form: FormGroup) {
         //console.log(form.value)
+        if (form.valid) {
+            this.display = true
 
-        this.display = true
+            this.data.name = form.value.name
+            this.data.firstName = form.value.firstName
+            this.data.address = form.value.address
+            this.data.email = form.value.email
+            this.data.phoneNumber = form.value.phoneNumber
+            this.data.role = this.data.role
 
-        this.data.name = form.value.name
-        this.data.firstName = form.value.firstName
-        this.data.address = form.value.address
-        this.data.email = form.value.email
-        this.data.phoneNumber = form.value.phoneNumber
-        this.data.role = this.role
-        
-        // encode password
-        this.data.password = window.btoa(form.value.password);
-       
+            // encode password
+            this.data.password = window.btoa(form.value.password);
 
-        this.customerService.postCustomer(this.data)
-        setTimeout(() => {
-            this.display = false
-            this.router.navigateByUrl('home')
-        }, 1500)
+
+            this.apiService.postCustomer(this.data)
+                .subscribe({
+                    next: (data) => console.log(data),
+                    error: (err) => this.error = err.message,
+            })
+            setTimeout(() => {
+                this.display = false
+                this.router.navigateByUrl('login')
+            }, 1500)
+
+        }
+
 
     }
 }

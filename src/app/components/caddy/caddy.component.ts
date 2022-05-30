@@ -2,7 +2,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { Training } from '../../model/training.model';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
-import { CustomerService } from 'src/app/services/authentification.service';
+import { AuthenticateService } from 'src/app/services/authentificate.service';
 @Component({
     selector: 'app-caddy',
     templateUrl: 'caddy.component.html'
@@ -14,7 +14,7 @@ export class CaddyComponent implements OnInit, DoCheck {
     display = false
     problemOrder = false
 
-    constructor(private cartService: CartService, private router: Router, private customerService: CustomerService) { }
+    constructor(private cartService: CartService, private router: Router, private authenticateService: AuthenticateService) { }
 
     // on load componenent
     ngOnInit(): void {
@@ -48,7 +48,7 @@ export class CaddyComponent implements OnInit, DoCheck {
     }
     // valide order from caddy wuith user session
     onToOrder() {
-        let customer = this.customerService.getCustomerFromStorage()
+        let customer = this.authenticateService.getCustomerFromStorage()
         // console.log(customer)
         if (customer.firstName === "unknown") {
             this.problemOrder = true

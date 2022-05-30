@@ -1,5 +1,5 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
-import { CustomerService } from 'src/app/services/authentification.service';
+import { AuthenticateService } from 'src/app/services/authentificate.service';
 import { CartService } from './services/cart.service';
 import { Customer } from './model/customer.model';
 @Component({
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, DoCheck {
   admin = false
 
 
-  constructor(private customerService: CustomerService,
+  constructor(private authenticateService: AuthenticateService,
     private cartService: CartService
   ) {
     this.customer = new Customer("unknown", "", "", "", "", "", "")
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit, DoCheck {
   }
 
   showName() {
-    this.name = this.customerService.getCustomerFromStorage().firstName
+    this.name = this.authenticateService.getCustomerFromStorage().firstName
     if (this.name != "unknown") {
       this.display = true
       this.loggin = false
@@ -42,13 +42,13 @@ export class AppComponent implements OnInit, DoCheck {
     }
   }
   linkAdmin() {
-    this.role = this.customerService.getCustomerFromStorage().role
+    this.role = this.authenticateService.getCustomerFromStorage().role
     if (this.role === "admin") {
       this.admin = true
     }
   }
   disconnect() {
-    this.customerService.removeCustomerFromStorage()
+    this.authenticateService.removeCustomerFromStorage()
     this.display = false
     this.loggin = true
     this.logout = false

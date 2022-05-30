@@ -65,12 +65,12 @@
             <div class="col-lg-6">
               <h3 class="h6">Billing address</h3>
               <address>
-                <strong>{{customerService.getCustomerFromStorage().name}}</strong><br>
-                <strong>{{customerService.getCustomerFromStorage().firstName}}</strong><br>
-                {{customerService.getCustomerFromStorage().address}}<br>
+                <strong>{{authenticateService.getCustomerFromStorage().name}}</strong><br>
+                <strong>{{authenticateService.getCustomerFromStorage().firstName}}</strong><br>
+                {{authenticateService.getCustomerFromStorage().address}}<br>
                 San Francisco, CA 94103<br>
-                <abbr title="Phone">P:</abbr> (123) {{customerService.getCustomerFromStorage().phoneNumber}}<br>
-                {{customerService.getCustomerFromStorage().email}}<br>
+                <abbr title="Phone">P:</abbr> (123) {{authenticateService.getCustomerFromStorage().phoneNumber}}<br>
+                {{authenticateService.getCustomerFromStorage().email}}<br>
               </address>
             </div>
           </div>
@@ -95,12 +95,12 @@
           <hr>
           <h3 class="h6">Address</h3>
           <address>
-            <strong>{{customerService.getCustomerFromStorage().name}}</strong><br>
-            <strong>{{customerService.getCustomerFromStorage().firstName}}</strong><br>
-            {{customerService.getCustomerFromStorage().address}}<br>
+            <strong>{{authenticateService.getCustomerFromStorage().name}}</strong><br>
+            <strong>{{authenticateService.getCustomerFromStorage().firstName}}</strong><br>
+            {{authenticateService.getCustomerFromStorage().address}}<br>
             San Francisco, CA 94103<br>
-            <abbr title="Phone">P:</abbr> (123) {{customerService.getCustomerFromStorage().phoneNumber}}<br>
-            {{customerService.getCustomerFromStorage().email}}<br>
+            <abbr title="Phone">P:</abbr> (123) {{authenticateService.getCustomerFromStorage().phoneNumber}}<br>
+            {{authenticateService.getCustomerFromStorage().email}}<br>
           </address>
         </div>
       </div>

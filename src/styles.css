@@ -1225,7 +1225,7 @@ p {
   position: fixed;
   z-index: 1;
   left: 25%;
-  top: 15%;
+  top: 15%; 
   border: 3px solid coral;
   width: 50%;
   overflow: visible;

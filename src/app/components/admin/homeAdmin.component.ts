@@ -1,5 +1,5 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { CustomerService } from '../../services/authentification.service';
+import { AuthenticateService } from '../../services/authentificate.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 
 export class HomeAdminComponent implements OnInit, DoCheck {
     problemAdmin = false
-    constructor(private router: Router, public customerService: CustomerService) { }
+    constructor(private router: Router, public authenticateService: AuthenticateService) { }
 
     ngOnInit() { }
 
@@ -18,7 +18,7 @@ export class HomeAdminComponent implements OnInit, DoCheck {
     }
 
     verifySession() {
-        let customer = this.customerService.getCustomerFromStorage()
+        let customer = this.authenticateService.getCustomerFromStorage()
         // console.log(customer)
         if (customer.role != "admin") {
             this.problemAdmin = true

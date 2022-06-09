@@ -3,13 +3,14 @@ import { HttpClient,HttpParams } from '@angular/common/http';
 import { Training } from '../model/training.model';
 import { environment } from 'src/environments/environment';
 import { Customer } from '../model/customer.model';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 
 export class ApiService {
     constructor(private http: HttpClient) { }
     //Training
-    public getTrainings() {
+    public getTrainings():Observable<Training[]> {
         return this.http.get<Training[]>(environment.host + "/trainings")
     }
     public getTrainingById(id: number) {

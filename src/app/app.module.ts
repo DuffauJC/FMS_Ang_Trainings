@@ -3,6 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TrainingReducer } from './state/trainings.reducer';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import { EffectsModule } from '@ngrx/effects';
+import { TrainingsEffects } from './state/trainings.effects';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,7 +40,10 @@ import { ListTrainingComponent } from './components/admin/listTraining/listTrain
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot({ trainings: TrainingReducer }),
+    StoreDevtoolsModule.instrument(),  // redux coté navigateur
+    EffectsModule.forRoot([TrainingsEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

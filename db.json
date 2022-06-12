@@ -2,10 +2,10 @@
   "trainings": [
     {
       "id": 1,
-      "name": "Java-Bien",
+      "name": "Java-bien",
       "description": "Formation Java SE 8 sur 5 jours",
       "price": "2800",
-      "quantity": 1,
+      "quantity": 0,
       "imgURL": "assets/img/java.png"
     },
     {

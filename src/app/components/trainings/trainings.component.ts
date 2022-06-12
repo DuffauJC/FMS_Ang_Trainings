@@ -1,8 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
-import { GetAllTrainingsAction } from 'src/app/state/trainings.action';
 import { selectAllTrainings } from 'src/app/state/trainings.selectors';
 import { Training } from '../../model/training.model';
 import { CartService } from '../../services/cart.service';
@@ -15,23 +13,17 @@ import { CartService } from '../../services/cart.service';
 export class TrainingsComponent implements OnInit, DoCheck {
 
   trainings$: Observable<Training[]> | null = null
-
- // listTrainings: Training[] | undefined
-  listTrainings: any
   error = null
 
   constructor(private cartService: CartService,
     private store: Store<any>,
-    private activatedRoute: ActivatedRoute) {
+   ) {
   }
 
   ngOnInit(): void {
-    // this.store.dispatch(new GetAllTrainingsAction({}));
      this.trainings$ = this.store.select(selectAllTrainings).pipe(
        map((state) => state));
     
-    this.activatedRoute.data.subscribe((data)=>(this.listTrainings=data))
-    console.log(this.listTrainings)
   }
   ngDoCheck(): void {
     this.findButton()

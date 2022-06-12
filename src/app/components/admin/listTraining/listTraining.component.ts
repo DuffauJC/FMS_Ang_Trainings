@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { Training } from 'src/app/model/training.model';
 import { AuthenticateService } from 'src/app/services/authentificate.service';
 import { ApiService } from 'src/app/services/api.service';
+import { map, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectAllTrainings } from 'src/app/state/trainings.selectors';
+import { GetAllTrainingsAction } from 'src/app/state/trainings.action';
 
 @Component({
     selector: 'app-listtraining',
@@ -12,7 +16,8 @@ import { ApiService } from 'src/app/services/api.service';
 
 export class ListTrainingComponent implements OnInit, DoCheck {
     ngForm: FormGroup
-    listTrainings: Training[] | undefined
+   // listTrainings: Training[] | undefined
+    trainings$: Observable<Training[]> | null = null
     error = null
     displayStyle = "none";
     displayBlur = "blur(0)"
@@ -31,7 +36,7 @@ export class ListTrainingComponent implements OnInit, DoCheck {
 
     constructor(
         private apiService: ApiService,
-        private router: Router, public authenticateService: AuthenticateService,
+        private router: Router, public authenticateService: AuthenticateService, private store: Store<any>
     ) {
         this.data = {
             id: 0,
@@ -51,20 +56,14 @@ export class ListTrainingComponent implements OnInit, DoCheck {
         })
     }
     ngOnInit() {
-        this.getAllTrainings()
+        this.store.dispatch(new GetAllTrainingsAction({}));
+        this.trainings$ = this.store.select(selectAllTrainings).pipe(
+            map((state) => state));
     }
     ngDoCheck(): void {
         this.verifySession()
     }
 
-    getAllTrainings() {
-        this.apiService.getTrainings().subscribe({
-            next: (data) => this.listTrainings = data,
-            error: (err) => this.error = err.message,
-            complete: () => this.error = null
-
-        })
-    }
     verifySession() {
         let customer = this.authenticateService.getCustomerFromStorage()
         // console.log(customer)
@@ -82,7 +81,7 @@ export class ListTrainingComponent implements OnInit, DoCheck {
                 .subscribe({
                     next: (data) => console.log(data),
                     error: (err) => this.error = err.message,
-                    complete: () => this.getAllTrainings()
+                    
             })
         }
 
@@ -122,7 +121,7 @@ export class ListTrainingComponent implements OnInit, DoCheck {
             .subscribe({
                 next: (data) => console.log(data),
                 error: (err) => this.error = err.message,
-                complete: () => this.getAllTrainings()
+                
         })
         this.display = true
 

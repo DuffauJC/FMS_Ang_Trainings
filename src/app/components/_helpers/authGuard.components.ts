@@ -20,18 +20,13 @@ export class AuthGuard implements CanActivate, Resolve<any>{
     ) { 
        
     }
-    resolve(route: ActivatedRouteSnapshot):Training[] {
-       // this.store.dispatch(new GetAllTrainingsAction({}));
+    resolve() {
         this.trainings$ = this.store.select(selectAllTrainings).pipe(
             map((state) => state));
         this.trainings$?.subscribe((data) => (this.listTrainings = data))
         if (this.listTrainings?.length===0) {
              this.store.dispatch(new GetAllTrainingsAction({}));
-        } else {
-           // console.log(this.listTrainings)
-            return this.listTrainings;
         }
-        return this.listTrainings;
     }
     
    

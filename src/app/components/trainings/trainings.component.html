@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div *ngIf="trainings$ | async as state" class="md-6 d-flex flex-wrap listAdmin">
+  <div *ngIf="trainings$ | async as state;else loading" class="md-6 d-flex flex-wrap listAdmin">
     <!-- product -->
     <div *ngFor="let training of state">
       <div class="product-content product-wrap">

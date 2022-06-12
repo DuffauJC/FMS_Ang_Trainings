@@ -20,7 +20,7 @@ import { ListTrainingComponent } from './components/admin/listTraining/listTrain
 const routes: Routes = [
   {
     path: 'trainings', component: TrainingsComponent,
-    resolve:{trainings:AuthGuard}
+    resolve:[AuthGuard]
   },
   {path: 'caddy', component: CaddyComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -46,6 +46,7 @@ const routes: Routes = [
     component: ListTrainingComponent,
     canActivate: [AuthGuard],
     data: { roles: [Role.Admin] },
+    resolve:[AuthGuard]
   },
 
 

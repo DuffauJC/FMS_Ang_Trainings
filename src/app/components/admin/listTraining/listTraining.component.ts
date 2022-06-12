@@ -31,7 +31,7 @@ export class ListTrainingComponent implements OnInit, DoCheck {
 
     constructor(
         private apiService: ApiService,
-        private router: Router, public authenticateService: AuthenticateService
+        private router: Router, public authenticateService: AuthenticateService,
     ) {
         this.data = {
             id: 0,

@@ -1,17 +1,40 @@
-import { Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { DoCheck, Injectable } from '@angular/core';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/router';
+import { State, Store } from '@ngrx/store';
+import { map, Observable } from 'rxjs';
+import { Training } from 'src/app/model/training.model';
 import { AuthenticateService } from 'src/app/services/authentificate.service';
 import { GetAllTrainingsAction } from 'src/app/state/trainings.action';
+import { selectAllTrainings } from 'src/app/state/trainings.selectors';
 
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, Resolve<any>{
+   
+    trainings$: Observable<Training[]> | null = null
+    listTrainings: Training[] = []; 
     constructor(
         private router: Router,
         private authenticateService: AuthenticateService,
+        private store: Store<any>
+    ) { 
        
-    ) { }
+    }
+    resolve(route: ActivatedRouteSnapshot):Training[] {
+       // this.store.dispatch(new GetAllTrainingsAction({}));
+        this.trainings$ = this.store.select(selectAllTrainings).pipe(
+            map((state) => state));
+        this.trainings$?.subscribe((data) => (this.listTrainings = data))
+        if (this.listTrainings?.length===0) {
+             this.store.dispatch(new GetAllTrainingsAction({}));
+        } else {
+           // console.log(this.listTrainings)
+            return this.listTrainings;
+        }
+        return this.listTrainings;
+    }
+    
+   
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.authenticateService.getCustomerFromStorage()

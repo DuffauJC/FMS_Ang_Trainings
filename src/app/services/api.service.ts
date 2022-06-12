@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class ApiService {
     constructor(private http: HttpClient) { }
     //Training
+    //
     public getTrainings():Observable<Training[]> {
         return this.http.get<Training[]>(environment.host + "/trainings")
     }

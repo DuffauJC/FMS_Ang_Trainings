@@ -1,7 +1,8 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
-import { selectAllTrainings } from 'src/app/state/trainings.selectors';
+import { AppState, TrainingsStateEnum } from 'src/app/ngrx/app.state';
 import { Training } from '../../model/training.model';
 import { CartService } from '../../services/cart.service';
 
@@ -12,22 +13,33 @@ import { CartService } from '../../services/cart.service';
 
 export class TrainingsComponent implements OnInit, DoCheck {
 
-  trainings$: Observable<Training[]> | null = null
+  trainings$: Observable<AppState> | null = null
+  versionState$: Observable<AppState> | null = null
   error = null
+  readonly trainingsStateEnum = TrainingsStateEnum;
 
   constructor(private cartService: CartService,
-    private store: Store<any>,
-   ) {
+    private store: Store<any>, private router: Router
+  ) {
+
   }
 
   ngOnInit(): void {
-     this.trainings$ = this.store.select(selectAllTrainings).pipe(
-       map((state) => state));
+    this.trainings$ = this.store.pipe(
+      map((state) => state.trainings));
     
   }
   ngDoCheck(): void {
     this.findButton()
 
+    // this.versionState$ = this.store.pipe(
+    //   map((state) => state.trainings.versionState)
+    // );
+    // this.versionState$.subscribe((data) => {
+    //   if (data.errorMessage.length!=0) {
+    //     this.router.navigate(['/404'])
+    //   }
+    // })
   }
 
   onAddToCart(training: Training) {

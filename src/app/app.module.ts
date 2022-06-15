@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TrainingReducer } from './state/trainings.reducer';
+import { TrainingReducer } from './ngrx/trainings.reducer';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { EffectsModule } from '@ngrx/effects';
-import { TrainingsEffects } from './state/trainings.effects';
+import { TrainingsEffects } from './ngrx/trainings.effects';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

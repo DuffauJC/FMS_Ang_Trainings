@@ -14,6 +14,22 @@ li {
   height: 600px;
 }
 
+/* not found 404 ********************** */
+.error{
+  background-image: url("/assets/img/404.jpg");
+  background-position: center;
+  height: 400px;
+}
+.errorMessage{
+  font-size: 40px;
+  color: yellow;
+  background-color: red;
+  position: relative;
+  top: 240px;
+  text-align: center;
+}
+
+/* ******************************* */
 .img_cart {
   width: 40px;
   height: auto;

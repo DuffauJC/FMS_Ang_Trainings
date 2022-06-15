@@ -6,8 +6,9 @@ import { AuthenticateService } from 'src/app/services/authentificate.service';
 import { ApiService } from 'src/app/services/api.service';
 import { map, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { selectAllTrainings } from 'src/app/state/trainings.selectors';
-import { GetAllTrainingsAction } from 'src/app/state/trainings.action';
+import { selectAllTrainings } from 'src/app/ngrx/trainings.selectors';
+import { GetAllTrainingsAction } from 'src/app/ngrx/trainings.action';
+import { AppState } from 'src/app/ngrx/app.state';
 
 @Component({
     selector: 'app-listtraining',
@@ -16,8 +17,7 @@ import { GetAllTrainingsAction } from 'src/app/state/trainings.action';
 
 export class ListTrainingComponent implements OnInit, DoCheck {
     ngForm: FormGroup
-   // listTrainings: Training[] | undefined
-    trainings$: Observable<Training[]> | null = null
+    trainings$: Observable<AppState> | null = null
     error = null
     displayStyle = "none";
     displayBlur = "blur(0)"
@@ -57,8 +57,8 @@ export class ListTrainingComponent implements OnInit, DoCheck {
     }
     ngOnInit() {
         this.store.dispatch(new GetAllTrainingsAction({}));
-        this.trainings$ = this.store.select(selectAllTrainings).pipe(
-            map((state) => state));
+        this.trainings$ = this.store.pipe(
+            map((state) => state.trainings));
     }
     ngDoCheck(): void {
         this.verifySession()

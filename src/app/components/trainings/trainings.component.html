@@ -2,7 +2,7 @@
 
   <div *ngIf="trainings$ | async as state;else loading" class="md-6 d-flex flex-wrap listAdmin">
     <!-- product -->
-    <div *ngFor="let training of state">
+    <div *ngFor="let training of state.trainings">
       <div class="product-content product-wrap">
         <div class="row">
           <div class="col-md-5 col-sm-12 col-xs-12">

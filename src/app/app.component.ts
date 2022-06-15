@@ -2,7 +2,7 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { AuthenticateService } from 'src/app/services/authentificate.service';
 import { CartService } from './services/cart.service';
 import { Customer } from './model/customer.model';
-import { GetAllTrainingsAction } from './state/trainings.action';
+import { GetAllTrainingsAction } from './ngrx/trainings.action';
 import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-root',

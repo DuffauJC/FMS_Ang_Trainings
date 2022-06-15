@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Observable,map, mergeMap, catchError, EMPTY } from 'rxjs';
+import { Observable,map, mergeMap, catchError, of } from 'rxjs';
 import { ApiService } from '../services/api.service'
 
 import { TrainingsActions, TrainingsActionsTypes,GetAllTrainingsActionError,GetAllTrainingsActionSuccess } from './trainings.action';
@@ -13,14 +13,14 @@ export class TrainingsEffects {
         private apiService: ApiService
     ) { }
 
-    getAllTrainings$ = createEffect(
+    getAllTrainings:Observable<TrainingsActions> = createEffect(
         () => 
        this.effectActions$.pipe(
             ofType(TrainingsActionsTypes.GET_ALL_TRAININGS),
             mergeMap((action: TrainingsActions) => this.apiService.getTrainings()
                 .pipe(
                     map((trainings) => new GetAllTrainingsActionSuccess(trainings)),
-                    catchError(() =>EMPTY))
+                    catchError((err) =>of(new GetAllTrainingsActionError(err.message))))
                 )
             )
         )

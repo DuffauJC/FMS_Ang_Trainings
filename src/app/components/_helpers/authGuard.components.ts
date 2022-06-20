@@ -1,30 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AuthenticateService } from 'src/app/services/authentificate.service';
 import { AppState, TrainingsStateEnum } from 'src/app/ngrx/app.state';
-import { GetAllTrainingsAction} from 'src/app/ngrx/trainings.action';
+import { GetAllTrainingsAction } from 'src/app/ngrx/trainings.action';
 
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate, Resolve<any>{
 
-    trainings$: Observable<AppState> | null = null
+    versionState$: Observable<any> | null = null
     readonly trainingsStateEnum = TrainingsStateEnum;
+    stateEtat: String
 
     constructor(
         private router: Router,
         private authenticateService: AuthenticateService,
         private store: Store<any>
     ) {
-
+        this.stateEtat = ""
     }
+
     resolve() {
-        if (this.trainingsStateEnum.INITIAL) {
+        this.versionState$ = this.store.pipe(
+            map((state) => state));
+        this.versionState$.subscribe(data => this.stateEtat = data.trainings.versionState)
+
+       // console.log(this.stateEtat)
+
+        if (this.stateEtat) {
             this.store.dispatch(new GetAllTrainingsAction({}));
         }
+        if (this.stateEtat === this.trainingsStateEnum.ERROR) {
+            this.router.navigate(['404'])
+        }
+
     }
 
 

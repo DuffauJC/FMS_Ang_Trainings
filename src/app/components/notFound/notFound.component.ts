@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { TrainingsStateEnum } from 'src/app/ngrx/app.state';
+import { Store } from '@ngrx/store';
+import { map, Observable } from 'rxjs';
+
 @Component({
-    selector: 'app-notfound',
-    templateUrl: 'notFound.component.html'
+  selector: 'app-notfound',
+  templateUrl: 'notFound.component.html'
 })
 
 export class NotFoundComponent implements OnInit {
 
-    readonly trainingsStateEnum = TrainingsStateEnum;
-    requestError=false
-    constructor() { }
+  versionState$: Observable<any> | null = null
+  errorMessage: String
 
-    ngOnInit() {
-          if (this.trainingsStateEnum.ERROR) {
-            this.requestError=true
-          }
-    }
-  
+  constructor(private store: Store<any>) {
+    this.errorMessage = ""
+  }
+
+  ngOnInit() {
+    this.versionState$ = this.store.pipe(
+      map((state) => state));
+    this.versionState$.subscribe(data => this.errorMessage = data.trainings.errorMessage)
+
+  }
+
 }

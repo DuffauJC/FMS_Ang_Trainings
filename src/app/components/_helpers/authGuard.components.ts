@@ -3,7 +3,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Resol
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
 import { AuthenticateService } from 'src/app/services/authentificate.service';
-import { AppState, TrainingsStateEnum } from 'src/app/ngrx/app.state';
+import { TrainingsStateEnum } from 'src/app/ngrx/app.state';
 import { GetAllTrainingsAction } from 'src/app/ngrx/trainings.action';
 
 
